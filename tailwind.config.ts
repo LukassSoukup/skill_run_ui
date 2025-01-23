@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import daisyui from "daisyui";
 
 export default {
   content: [
@@ -14,5 +15,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [daisyui],
+  daisyui: {
+    themes: true, // https://daisyui.com/docs/themes/
+    darkTheme: "bussiness",
+    base: true,
+    styled: true,
+    utils: true,
+    logs: true,
+    themeRoot: ":root",
+  },
 } satisfies Config;
