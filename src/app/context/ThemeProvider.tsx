@@ -2,7 +2,6 @@
 'use client'; // Must be a client component for CSR functionality
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { WHITE_MODE } from '../constants/Styles';
 import StylesWrapper from '../components/Utils/ThemeWrapper';
 
 interface ThemeContextProps {
@@ -10,12 +9,17 @@ interface ThemeContextProps {
   setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
+
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<string>(() => {
-    return WHITE_MODE;
-  });
+  const WHITE_MODE = process.env.NEXT_PUBLIC_THEME_LIGHT_MODE || 'nord';
+  const [theme, setTheme] = useState<string>(WHITE_MODE);
+
+  useEffect(() => {
+    setTheme(localStorage.getItem("theme") || WHITE_MODE);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('theme', theme); // Save theme to localStorage
@@ -23,7 +27,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-        <StylesWrapper theme={theme}>
+        <StylesWrapper>
           {children}
         </StylesWrapper>
     </ThemeContext.Provider>
