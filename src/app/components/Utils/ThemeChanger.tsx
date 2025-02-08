@@ -18,7 +18,7 @@ const ThemeChanger = () => {
   const isDarkTheme = () : boolean => theme === DARK_MODE;
 
   return (
-    <StylesWrapper className="p-16 absolute">
+    <StylesWrapper>
       <button
         data-theme={isDarkTheme() ? WHITE_MODE : DARK_MODE}
         onClick={switchTheme}

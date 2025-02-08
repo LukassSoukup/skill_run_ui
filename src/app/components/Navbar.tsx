@@ -6,9 +6,9 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
     throw new Error(`Invalid page name: ${pageName}`)
   }
   return (
-    <StylesWrapper className="navbar bg-base-100">
+    <StylesWrapper className="navbar bg-base-100 fixed w-full top-0 z-10">
       <div className="navbar-start">
-        <div className="dropdown">
+        <div className="dropdown dropdown-hover">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
             <svg
               className="h-5 w-5"
@@ -24,13 +24,13 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-lg">
             {Object.entries(navMap).map(([, value]: [string, routeDetailsType]) => (
               <li key={value.name} className="menu menu-title">
                 <Link 
                   key={value.name}
                   href={value.path}
-                  className="btn btn-neutral"
+                  className="btn btn-secondary"
                 >
                   {value.name}
                 </Link>

@@ -9,7 +9,6 @@ interface ThemeContextProps {
   setTheme: React.Dispatch<React.SetStateAction<string>>;
 }
 
-
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
