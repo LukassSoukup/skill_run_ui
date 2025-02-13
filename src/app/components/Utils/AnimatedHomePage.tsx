@@ -1,13 +1,13 @@
 "use client"
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
-import ThreeCanvas from '@/app/components/ThreeCanvas';
+import LightBallsScene from '../canvas/LightBallsScene';
 
 const AnimatedHomePage = () => {
   return (
     <section className="h-screen flex items-center justify-center text-center relative">
       <div className="absolute inset-0 opacity-30">
-      <ThreeCanvas />
+      <LightBallsScene />
       </div>
       <div className="relative z-10">
         <h1 className="text-5xl font-bold mb-4">{"Hi, I'm Lukáš Soukup"}</h1>
