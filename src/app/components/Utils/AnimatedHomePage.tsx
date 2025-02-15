@@ -6,7 +6,7 @@ import LightBallsScene from '../canvas/LightBallsScene';
 const AnimatedHomePage = () => {
   return (
     <section className="h-screen flex items-center justify-center text-center relative">
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-50">
       <LightBallsScene />
       </div>
       <div className="relative z-10">

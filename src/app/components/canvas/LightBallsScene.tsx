@@ -1,20 +1,21 @@
 import * as THREE from 'three'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import CameraControls from './CameraControls'
+import { TextureLoader } from 'three'
 
-function LightSphere({ color, intensity = 200 }: { color: THREE.ColorRepresentation, intensity?: number }) {
+function LightSphere({id, color, intensity = 200 }: {id: number, color: THREE.ColorRepresentation, intensity?: number }) {
     const [clicked, click] = useState(false)
     const lightRef = useRef<THREE.PointLight>(null!)
     const texture = new THREE.CanvasTexture(generateTexture())
     texture.magFilter = THREE.NearestFilter
     texture.wrapT = THREE.RepeatWrapping
     texture.wrapS = THREE.RepeatWrapping
-    texture.repeat.set(1, 4.5)
+    texture.repeat.set(2, 15)
 
     useFrame((state) => {
 
-        const time = state.clock.getElapsedTime() + (color === 0xff8888 ? 10000 : 0)
+        const time = state.clock.getElapsedTime() + ((id-1) * 10000)
         if (lightRef.current) {
             lightRef.current.position.x = Math.sin(time * 0.6) * 9
             lightRef.current.position.y = Math.sin(time * 0.7) * 9 + 6
@@ -25,30 +26,60 @@ function LightSphere({ color, intensity = 200 }: { color: THREE.ColorRepresentat
     })
 
     return (
-        <pointLight ref={lightRef} color={color} intensity={clicked ? intensity*10 : intensity} distance={20} castShadow shadow-bias={-0.005}>
+        <pointLight ref={lightRef} color={color} intensity={clicked ? intensity : intensity*10} distance={20} castShadow shadow-bias={-0.005}>
             <mesh onClick={() => click(!clicked)}>
-                <sphereGeometry args={[0.3, 12, 6]}  />
+                <sphereGeometry args={[0.3, 12, 6]} />
                 <meshPhysicalMaterial emissive={color} emissiveIntensity={1} color={color} />
             </mesh>
             <mesh castShadow receiveShadow onClick={() => click(!clicked)}>
                 <sphereGeometry args={[2, 32, 8]} />
-                <meshPhongMaterial side={THREE.DoubleSide} alphaMap={texture} alphaTest={0.5} />
+                <meshStandardMaterial 
+                    side={THREE.DoubleSide} 
+                    alphaMap={texture} 
+                    alphaTest={0.5} 
+                    color={color} 
+                    roughness={0} 
+                    metalness={0.985} 
+                    flatShading
+                />
             </mesh>
         </pointLight>
     )
 }
 
 function BackgroundBox() {
+    const [map, bumpMap, roughnessMap] = useLoader(TextureLoader, [
+        '/textures/hardwood_diffuse.jpg',
+        '/textures/hardwood_bump.jpg',
+        '/textures/hardwood_roughness.jpg'
+    ]);
+    map.wrapS = THREE.RepeatWrapping
+    map.wrapT = THREE.RepeatWrapping
+    map.anisotropy = 4
+    map.repeat.set(4, 4)
+    map.needsUpdate = true
+
+    bumpMap.wrapS = THREE.RepeatWrapping
+    bumpMap.wrapT = THREE.RepeatWrapping
+    bumpMap.anisotropy = 4
+    bumpMap.repeat.set(4, 4)
+    bumpMap.needsUpdate = true
+
+    roughnessMap.wrapS = THREE.RepeatWrapping
+    roughnessMap.wrapT = THREE.RepeatWrapping
+    roughnessMap.anisotropy = 4
+    roughnessMap.repeat.set(4, 4)
+    roughnessMap.needsUpdate = true
+
     return (
         <mesh position={[0, 10, 0]} receiveShadow>
             <boxGeometry args={[30, 30, 60]} />
-            <meshPhongMaterial
+            <meshStandardMaterial
                 color={0xa0adaf}
-                shininess={10}
-                specular={0x111111}
-                emissive={0x111111}
-                reflectivity={7}
                 side={THREE.BackSide}
+                map={map}
+                bumpMap={bumpMap}
+                roughnessMap={roughnessMap}
             />
         </mesh>
     )
@@ -71,8 +102,8 @@ export default function LightBallsScene() {
             camera={{ position: [0, 10, 40], fov: 45 }}
         >
             <ambientLight color={0x111122} intensity={3} />
-            <LightSphere color={0x0088ff} />
-            <LightSphere color={0xff8888} />
+            <LightSphere id={1} color={0xffff} />
+            <LightSphere id={2} color={0xffffff} />
             <BackgroundBox />
             <CameraControls />
         </Canvas>
