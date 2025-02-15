@@ -7,6 +7,7 @@ import StylesWrapper from '../components/Utils/ThemeWrapper';
 interface ThemeContextProps {
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
+  isWhiteMode: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -25,7 +26,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, isWhiteMode: theme === WHITE_MODE }}>
         <StylesWrapper>
           {children}
         </StylesWrapper>

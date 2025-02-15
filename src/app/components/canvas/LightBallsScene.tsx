@@ -2,9 +2,11 @@ import * as THREE from 'three'
 import { Canvas, useFrame, useLoader } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import CameraControls from './CameraControls'
+import CameraControlsMobile, { isMobile } from './CameraControlsMobile'
 import { TextureLoader } from 'three'
+import { useTheme } from '@/app/context/ThemeProvider'
 
-function LightSphere({id, color, intensity = 200 }: {id: number, color: THREE.ColorRepresentation, intensity?: number }) {
+function LightSphere({id, color, isWhiteMode, intensity = 200 }: {id: number, color: THREE.ColorRepresentation, isWhiteMode:boolean, intensity?: number }) {
     const [clicked, click] = useState(false)
     const lightRef = useRef<THREE.PointLight>(null!)
     const texture = new THREE.CanvasTexture(generateTexture())
@@ -26,12 +28,16 @@ function LightSphere({id, color, intensity = 200 }: {id: number, color: THREE.Co
     })
 
     return (
-        <pointLight ref={lightRef} color={color} intensity={clicked ? intensity : intensity*10} distance={20} castShadow shadow-bias={-0.005}>
+        <pointLight ref={lightRef} color={color} intensity={clicked ? intensity : intensity*10} decay={isWhiteMode ? 5 : 2} distance={20} castShadow shadow-bias={-0.005}>
             <mesh onClick={() => click(!clicked)}>
                 <sphereGeometry args={[0.3, 12, 6]} />
                 <meshPhysicalMaterial emissive={color} emissiveIntensity={1} color={color} />
             </mesh>
-            <mesh castShadow receiveShadow onClick={() => click(!clicked)}>
+            <mesh castShadow receiveShadow 
+                onPointerOver={() => document.body.style.cursor = 'pointer'}
+                onPointerOut={() => document.body.style.cursor = 'default'}
+                onClick={() => click(!clicked)}
+                >
                 <sphereGeometry args={[2, 32, 8]} />
                 <meshStandardMaterial 
                     side={THREE.DoubleSide} 
@@ -47,29 +53,61 @@ function LightSphere({id, color, intensity = 200 }: {id: number, color: THREE.Co
     )
 }
 
-function BackgroundBox() {
+function LightBulb({ color, isWhiteMode, setTheme }: { color: THREE.ColorRepresentation, isWhiteMode: boolean, setTheme: React.Dispatch<React.SetStateAction<string>> }) {
+    const WHITE_MODE = process.env.NEXT_PUBLIC_THEME_LIGHT_MODE;
+    const DARK_MODE = process.env.NEXT_PUBLIC_THEME_DARK_MODE;
+    const lightRef = useRef<THREE.PointLight>(null!)
+    const texture = new THREE.CanvasTexture(generateTexture())
+    texture.magFilter = THREE.NearestFilter
+    texture.wrapT = THREE.RepeatWrapping
+    texture.wrapS = THREE.RepeatWrapping
+    texture.repeat.set(5, 1)
+    return (
+        <>
+        <pointLight ref={lightRef} 
+            position={[0, 22, -20]} 
+            decay={0.05} 
+            intensity={isWhiteMode ? 10 : 0} 
+            distance={200} 
+            castShadow 
+            shadow-bias={-0.005}
+            onPointerOver={() => document.body.style.cursor = 'pointer'}
+            onPointerOut={() => document.body.style.cursor = 'default'}
+            onClick={() => setTheme(isWhiteMode ? DARK_MODE! : WHITE_MODE!)}
+        >
+            <mesh>
+            <sphereGeometry args={[0.3, 12, 6]} />
+            <meshStandardMaterial emissive={isWhiteMode ? color : 0x000000} emissiveIntensity={1} color={color} />
+            </mesh>
+            <mesh  >
+            <sphereGeometry args={[2, 32, 3]} />
+            <meshStandardMaterial 
+                side={THREE.DoubleSide} 
+                alphaMap={texture} 
+                alphaTest={0.5} 
+                color={color} 
+            />
+            </mesh>
+        </pointLight>
+        </>
+    )
+}
+
+function BackgroundBox({isWhiteMode}: {isWhiteMode: boolean}) {
     const [map, bumpMap, roughnessMap] = useLoader(TextureLoader, [
         '/textures/hardwood_diffuse.jpg',
         '/textures/hardwood_bump.jpg',
         '/textures/hardwood_roughness.jpg'
     ]);
-    map.wrapS = THREE.RepeatWrapping
-    map.wrapT = THREE.RepeatWrapping
-    map.anisotropy = 4
-    map.repeat.set(4, 4)
-    map.needsUpdate = true
 
-    bumpMap.wrapS = THREE.RepeatWrapping
-    bumpMap.wrapT = THREE.RepeatWrapping
-    bumpMap.anisotropy = 4
-    bumpMap.repeat.set(4, 4)
-    bumpMap.needsUpdate = true
+    const setupTexture = (texture: THREE.Texture) => {
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.anisotropy = 4;
+        texture.repeat.set(4, 4);
+        texture.needsUpdate = true;
+    };
 
-    roughnessMap.wrapS = THREE.RepeatWrapping
-    roughnessMap.wrapT = THREE.RepeatWrapping
-    roughnessMap.anisotropy = 4
-    roughnessMap.repeat.set(4, 4)
-    roughnessMap.needsUpdate = true
+    [map, bumpMap, roughnessMap].forEach(setupTexture);
 
     return (
         <mesh position={[0, 10, 0]} receiveShadow>
@@ -80,6 +118,9 @@ function BackgroundBox() {
                 map={map}
                 bumpMap={bumpMap}
                 roughnessMap={roughnessMap}
+                roughness={isWhiteMode ? 3 : 0.75}
+                metalness={0.5}
+                bumpScale={2}
             />
         </mesh>
     )
@@ -96,16 +137,18 @@ function generateTexture() {
 }
 
 export default function LightBallsScene() {
+    const { setTheme, isWhiteMode } = useTheme()
     return (
         <Canvas
             shadows={true}
             camera={{ position: [0, 10, 40], fov: 45 }}
         >
             <ambientLight color={0x111122} intensity={3} />
-            <LightSphere id={1} color={0xffff} />
-            <LightSphere id={2} color={0xffffff} />
-            <BackgroundBox />
-            <CameraControls />
+            <LightBulb color={0xffffff} isWhiteMode={isWhiteMode} setTheme={setTheme}/>
+            <LightSphere id={1} color={0xffff} isWhiteMode={isWhiteMode}/>
+            <LightSphere id={2} color={0xffffff} isWhiteMode={isWhiteMode}/>
+            <BackgroundBox isWhiteMode={isWhiteMode}/>
+            {isMobile() ? <CameraControlsMobile /> : <CameraControls />}
         </Canvas>
     )
 }
