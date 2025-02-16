@@ -11,18 +11,12 @@ const CameraControls = () => {
     console.debug("Mobile device detected, using mobile camera controls");
     const { camera } = useThree()
     const orientation = useRef({ alpha: 0, beta: 0, gamma: 0 })
-    const targetRotation = useRef({ x: 0, y: 0 })
 
     useEffect(() => {
         const handleDeviceOrientation = (event: DeviceOrientationEvent) => {
             orientation.current.alpha = event.alpha || 0
             orientation.current.beta = event.beta || 0
             orientation.current.gamma = event.gamma || 0
-            console.debug(event.alpha, event.beta, event.gamma);
-            console.debug(THREE.MathUtils.degToRad(orientation.current.beta), THREE.MathUtils.degToRad(orientation.current.gamma));
-            // Convert device orientation to rotation angles
-            targetRotation.current.x = THREE.MathUtils.degToRad(orientation.current.beta) // vertical rotation
-            targetRotation.current.y = THREE.MathUtils.degToRad(orientation.current.gamma) // horizontal rotation
         }
 
         window.addEventListener('deviceorientation', handleDeviceOrientation)
@@ -33,8 +27,18 @@ const CameraControls = () => {
 
     useFrame(() => {
         // Smoothly interpolate rotation
-        camera.rotation.x += (targetRotation.current.x - camera.rotation.x) * 0.05
-        camera.rotation.y += (targetRotation.current.y - camera.rotation.y) * 0.05
+        const targetX = THREE.MathUtils.lerp(camera.rotation.x, (orientation.current.beta * Math.PI) / 10, 0.1)
+        const targetY = THREE.MathUtils.lerp(camera.rotation.y, (orientation.current.gamma * Math.PI) / 10, 0.1)
+
+         // Constrain rotation to stay within the box
+        const minRotationX = -Math.PI / 4   // -45 degrees
+        const maxRotationX = Math.PI / 4    // +45 degrees
+        const minRotationY = -Math.PI / 4   // -45 degrees
+        const maxRotationY = Math.PI / 4    // +45 degrees
+
+        camera.rotation.x = THREE.MathUtils.clamp(targetX, minRotationX, maxRotationX)
+        camera.rotation.y = THREE.MathUtils.clamp(targetY, minRotationY, maxRotationY)
+    
     })
 
     return null
