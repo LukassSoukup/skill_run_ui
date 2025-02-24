@@ -5,6 +5,7 @@ import CameraControls from './CameraControls'
 import CameraControlsMobile, { isMobile } from './CameraControlsMobile'
 import { TextureLoader } from 'three'
 import { useTheme } from '@/app/context/ThemeProvider'
+import CustomModel from './handler/ModelHandler'
 
 function LightSphere({id, color, isWhiteMode, intensity = 200 }: {id: number, color: THREE.ColorRepresentation, isWhiteMode:boolean, intensity?: number }) {
     const [clicked, click] = useState(false)
@@ -62,10 +63,11 @@ function LightBulb({ color, isWhiteMode, setTheme }: { color: THREE.ColorReprese
     texture.wrapT = THREE.RepeatWrapping
     texture.wrapS = THREE.RepeatWrapping
     texture.repeat.set(5, 1)
+
     return (
         <>
         <pointLight ref={lightRef} 
-            position={[0, 22, -20]} 
+            position={[0, 20.8, -20]} 
             decay={0.05} 
             intensity={isWhiteMode ? 10 : 0} 
             distance={200} 
@@ -76,17 +78,9 @@ function LightBulb({ color, isWhiteMode, setTheme }: { color: THREE.ColorReprese
             onClick={() => setTheme(isWhiteMode ? DARK_MODE! : WHITE_MODE!)}
         >
             <mesh>
-            <sphereGeometry args={[0.3, 12, 6]} />
+            <sphereGeometry args={[0.93, 15, 60]} />
             <meshStandardMaterial emissive={isWhiteMode ? color : 0x000000} emissiveIntensity={1} color={color} />
-            </mesh>
-            <mesh  >
-            <sphereGeometry args={[2, 32, 3]} />
-            <meshStandardMaterial 
-                side={THREE.DoubleSide} 
-                alphaMap={texture} 
-                alphaTest={0.5} 
-                color={color} 
-            />
+            <CustomModel url="/models/LightCeiling.glb" size={[5, 5, 5]} position={[0, 4.2, 0]}/>
             </mesh>
         </pointLight>
         </>
@@ -137,17 +131,18 @@ function generateTexture() {
 }
 
 export default function LightBallsScene() {
-    const { setTheme, isWhiteMode } = useTheme()
+    const { theme, setTheme, isWhiteMode } = useTheme()
+    const whiteModEnabled = isWhiteMode(theme);
     return (
-        <Canvas
+        <Canvas 
             shadows={true}
             camera={{ position: [0, 10, 40], fov: 45 }}
         >
             <ambientLight color={0x111122} intensity={3} />
-            <LightBulb color={0xffffff} isWhiteMode={isWhiteMode} setTheme={setTheme}/>
-            <LightSphere id={1} color={0xffff} isWhiteMode={isWhiteMode}/>
-            <LightSphere id={2} color={0xffffff} isWhiteMode={isWhiteMode}/>
-            <BackgroundBox isWhiteMode={isWhiteMode}/>
+            <LightBulb color={0xffffff} isWhiteMode={whiteModEnabled} setTheme={setTheme}/>
+            <LightSphere id={1} color={0xffff} isWhiteMode={whiteModEnabled}/>
+            <LightSphere id={2} color={0xffffff} isWhiteMode={whiteModEnabled}/>
+            <BackgroundBox isWhiteMode={whiteModEnabled}/>
             {isMobile() ? <CameraControlsMobile /> : <CameraControls />}
         </Canvas>
     )

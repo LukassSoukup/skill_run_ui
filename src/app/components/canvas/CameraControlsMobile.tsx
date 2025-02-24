@@ -26,19 +26,24 @@ const CameraControls = () => {
     }, [])
 
     useFrame(() => {
-        // Smoothly interpolate rotation
-        const targetX = THREE.MathUtils.lerp(camera.rotation.x, (orientation.current.beta * Math.PI) / 10, 0.1)
-        const targetY = THREE.MathUtils.lerp(camera.rotation.y, (orientation.current.gamma * Math.PI) / 10, 0.1)
+        // Calculate target position and rotation based on device orientation
+        // The scene is located at orientation 0,0,0 - thats why we need to bring the orientation closer to 0 by multiplying it with roation speed constant
+        // beta is subtracted by 90 to make the orientation more in the center of the scene and to fit the natural holding position of the device
+        const ROTATION_SPEED_X = 0.4;
+        const ROTATION_SPEED_Y = 0.1;
+        const targetX = ((orientation.current.gamma*ROTATION_SPEED_X) * Math.PI) / 180
+        const targetY = (((orientation.current.beta-90)*ROTATION_SPEED_Y) * Math.PI) / 180
 
-         // Constrain rotation to stay within the box
-        const minRotationX = -Math.PI / 4   // -45 degrees
-        const maxRotationX = Math.PI / 4    // +45 degrees
-        const minRotationY = -Math.PI / 4   // -45 degrees
-        const maxRotationY = Math.PI / 4    // +45 degrees
+        // Constrain rotation to stay within the box
+        const minRotationX = -Math.PI / 8 // -22.5 degrees
+        const maxRotationX = Math.PI / 8  // 22.5 degrees
+        const minRotationY = -Math.PI / 8 // -22.5 degrees
+        const maxRotationY = Math.PI / 8  // 22.5 degrees
 
-        camera.rotation.x = THREE.MathUtils.clamp(targetX, minRotationX, maxRotationX)
-        camera.rotation.y = THREE.MathUtils.clamp(targetY, minRotationY, maxRotationY)
-    
+        // Smoothly interpolate rotation with easing
+        camera.rotation.x = THREE.MathUtils.lerp(camera.rotation.x, THREE.MathUtils.clamp(targetY, minRotationX, maxRotationX), 0.03)
+        camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, THREE.MathUtils.clamp(targetX, minRotationY, maxRotationY), 0.03)
+
     })
 
     return null
