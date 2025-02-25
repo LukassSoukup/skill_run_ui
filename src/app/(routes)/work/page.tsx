@@ -4,7 +4,7 @@ import { navMap } from '../../components/Navbar'
 
 const Work = () => {
   return (
-    <CommonLayout pageName={navMap.projects}>
+    <CommonLayout pageName={navMap.work}>
       <div>Work</div>
     </CommonLayout>
   )

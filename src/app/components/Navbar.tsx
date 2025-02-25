@@ -9,7 +9,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
     <StylesWrapper className="navbar bg-base-100 fixed w-full top-0 z-10">
       <div className="navbar-start">
         <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-square display-inline-block w-full pl-2 pr-2">
             <svg
               className="h-5 w-5"
               fill="none"
@@ -21,6 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h7" />
             </svg>
+          <p key={pageName.name} className="text-xl">{pageName.name}</p>
           </div>
           <ul
             tabIndex={0}
@@ -38,9 +39,6 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
             ))}
           </ul>
         </div>
-      </div>
-      <div className="navbar-center">
-        <Link key={pageName.name} href={pageName.path} className="btn btn-ghost text-xl text-center">{pageName.name}</Link>
       </div>
     </StylesWrapper>
   )
