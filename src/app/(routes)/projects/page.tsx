@@ -1,6 +1,7 @@
 import React from 'react'
 import { navMap } from '../../components/Navbar'
 import CommonLayout from '@/app/components/Layout'
+import StylesWrapper from '@/app/components/Utils/ThemeWrapper'
 
 const PersonalProjects = () => {
   return (
@@ -24,7 +25,7 @@ const PersonalProjects = () => {
 
 const Project = ({ name, date, description, gitHub }: { name: string; date: string; description: string, gitHub: string }) => {
   return (
-    <div className="card w-full h-full bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-1000">
+    <StylesWrapper className='card w-full h-full bg-base-200 shadow-xl hover:shadow-2xl'>
       <div className="card-body">
         <h2 className="card-title text-primary">{name}</h2>
         <div className="badge badge-secondary">{date}</div>
@@ -32,13 +33,11 @@ const Project = ({ name, date, description, gitHub }: { name: string; date: stri
         <div className="card-actions justify-end mt-4">
           <button className="btn btn-primary btn-sm">Details</button>
           <button className="btn btn-ghost btn-sm">
-            <a href={gitHub}>
-              GitHub
-            </a>
+            <a href={gitHub}>GitHub</a>
           </button>
         </div>
       </div>
-    </div>
+    </StylesWrapper>
   );
 };
 

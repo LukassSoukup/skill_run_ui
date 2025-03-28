@@ -131,8 +131,8 @@ function generateTexture() {
 }
 
 export default function LightBallsScene() {
-    const { theme, setTheme, isWhiteMode } = useTheme()
-    const whiteModEnabled = isWhiteMode(theme);
+    const { setTheme, isWhiteMode } = useTheme()
+    const whiteModEnabled = isWhiteMode();
     return (
         <Canvas 
             shadows={true}

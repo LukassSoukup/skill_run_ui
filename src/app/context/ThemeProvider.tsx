@@ -7,29 +7,42 @@ import StylesWrapper from '../components/Utils/ThemeWrapper';
 interface ThemeContextProps {
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
-  isWhiteMode: (currentTheme: string) => boolean;
+  isWhiteMode: () => boolean;
+  isDarkMode?: () => boolean;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const WHITE_MODE = process.env.NEXT_PUBLIC_THEME_LIGHT_MODE || 'nord';
+  const DARK_MODE = process.env.NEXT_PUBLIC_THEME_DARK_MODE || 'business';
   const [theme, setTheme] = useState<string>(WHITE_MODE);
 
   useEffect(() => {
-    setTheme(localStorage.getItem("theme") || WHITE_MODE);
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(storedTheme || WHITE_MODE);
+
+    if (storedTheme) {
+      document.documentElement.classList.toggle('dark', storedTheme === DARK_MODE);
+    } else {
+      document.documentElement.classList.toggle('dark', prefersDark);
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     localStorage.setItem('theme', theme); // Save theme to localStorage
+    document.documentElement.classList.toggle('dark', theme === DARK_MODE);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
-  const isWhiteMode = (currentTheme: string) => currentTheme === WHITE_MODE;
+  const isWhiteMode = () => theme === WHITE_MODE;
+  const isDarkMode = () => theme === DARK_MODE;
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, isWhiteMode }}>
-        <StylesWrapper>
+    <ThemeContext.Provider value={{ theme, setTheme, isWhiteMode, isDarkMode }}>
+        <StylesWrapper className='h-full w-full'>
           {children}
         </StylesWrapper>
     </ThemeContext.Provider>

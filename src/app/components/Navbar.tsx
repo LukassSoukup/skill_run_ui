@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h7" />
             </svg>
-          <p key={pageName.name} className="text-xl">{pageName.name}</p>
+            <p key={pageName.name} className="text-xl">{pageName.name}</p>
           </div>
           <ul
             tabIndex={0}

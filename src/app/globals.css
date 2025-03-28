@@ -6,14 +6,126 @@
   --background: #ffffff;
   --foreground: #171717;
   --foreground-rgb: 255,255,255;
+
+  --marquee-width: 100%;
+  --marquee-height: 20vh;
+  --marquee-elements-displayed: 15;
+  --marquee-elements: 27;
+  --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+  --marquee-animation-duration: calc(var(--marquee-elements) * 1s);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
         --foreground-rgb: 0,0,0;
   }
+  .marquee:before {
+    left: 0;
+    background: linear-gradient(to right, #ECEFF4 0%, transparent 100%);
+  }
+
+  .marquee:after {
+    right: 0;
+    background: linear-gradient(to left, #ECEFF4 0%, transparent 100%);
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 12px;
+  }
+
+  :root {
+    --marquee-width: 100vw;
+    --marquee-height: 16vh;
+    --marquee-elements-displayed: 3;
+  }
+
+  .marquee:before,
+  .marquee:after {
+    width: 5rem;
+  }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
+}
+
+/* Smooth progress bars */
+progress::-webkit-progress-value {
+  transition: width 0.5s ease;
+}
+
+/* Image hover effects */
+.tech-image {
+  transition: transform 0.3s ease;
+}
+
+.tech-image:hover {
+  transform: scale(1.1);
+}
+
+.marquee {
+  width: var(--marquee-width);
+  height: var(--marquee-height);
+  color: #eee;
+  overflow: hidden;
+  height: 50px;
+}
+
+.marquee:before,
+.marquee:after {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 100%;
+  content: "";
+}
+
+.marquee:before {
+  left: 0;
+  background: linear-gradient(to right, #111 0%, transparent 35%);
+}
+
+.marquee:after {
+  right: 0;
+  background: linear-gradient(to left, #111 0%, transparent 35%);
+}
+
+.marquee__inner {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling var(--marquee-animation-duration) linear infinite;
+}
+.marquee__inner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrolling {
+  0% {
+    transform: translateX(var(--marquee-width));
+  }
+
+  100% {
+    transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
+  }
+}
+.marquee__inner li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  flex-shrink: 0;
+  width: var(--marquee-element-width);
+  max-height: 100%;
+  font-size: calc(var(--marquee-height)*3/4);
+  /* 5rem; */
+  white-space: nowrap;
+}
+
+.marquee__inner li img {
+  width: 100%;
+  height: 100%;
+  /* filter: invert(0);*/
 }
