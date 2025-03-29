@@ -6,7 +6,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
     throw new Error(`Invalid page name: ${pageName}`)
   }
   return (
-    <StylesWrapper className="navbar bg-base-100 fixed w-full top-0 z-10">
+    <StylesWrapper className="navbar bg-base-100 fixed w-full top-0 z-10 duration-200">
       <div className="navbar-start">
         <div className="dropdown dropdown-hover">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-square display-inline-block w-full pl-2 pr-2">

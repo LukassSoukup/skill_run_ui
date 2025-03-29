@@ -2,15 +2,14 @@
 
 import { type ReactElement, useState } from "react"
 import Image from "next/image"
-import CommonLayout from "@/app/components/Layout"
 import { navMap } from "@/app/components/Navbar"
-import AnimatedBanner from "./animatedBanner"
 import SkillModal from "./skillModal"
 import ProjectCard from "./projectCard"
-import { skillsInterface, SkillType, SortOption } from "./data/StaticDataInterface"
-import { projects, skills } from "./data/staticDataProvider"
+import { skillsInterface, SkillType, SortOption } from "../../data/StaticDataInterface"
+import { ABOUT_INTRO, projects, skills } from "../../data/staticDataProvider"
 import { useTheme } from "@/app/context/ThemeProvider"
 import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
+import Work from "../work/page"
 
 export default function About(): ReactElement {
   const [sortOption, setSortOption] = useState<SortOption>("type")
@@ -50,24 +49,12 @@ export default function About(): ReactElement {
   }
 
   return (
-    <>
-      <AnimatedBanner skills={skills} />
-      <CommonLayout
-        pageName={navMap.about}
-        className="min-h-screen bg-base-200 flex items-center justify-center p-4 md:p-8"
-      >
-        <div className="card bg-base-100 shadow-xl max-w-5xl w-full">
+        <div id={navMap.about.name} className="card bg-base-100 shadow-xl max-w-5xl w-full backdrop-filter backdrop-blur-lg bg-opacity-45 p-8 rounded-lg">
           <div className="card-body p-6 md:p-8">
             {/* About Section */}
             <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">About</h1>
-              <p className="text-base md:text-lg leading-relaxed">
-                Fully committed to the philosophy of life-long learning, I&apos;m a full stack developer with a deep
-                passion for JavaScript, React and all things web development. The unique combination of creativity,
-                logic, technology and never running out of new things to discover, drives my excitement and passion for
-                web development. When I&apos;m not at my computer I like to spend my time reading, keeping fit and
-                playing guitar.
-              </p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">{navMap.about.name}</h1>
+              <p className="text-base md:text-lg leading-relaxed">{ABOUT_INTRO}</p>
             </div>
 
             {/* Skills Section */}
@@ -125,10 +112,9 @@ export default function About(): ReactElement {
               </div>
             </div>
           </div>
+          <Work/>
+          <SkillModal />
         </div>
-      </CommonLayout>
-      <SkillModal />
-    </>
   )
 }
 
@@ -166,7 +152,7 @@ function SkillButton({ skill }: { skill: skillsInterface }) {
       {/* Technology Image */}
       <div className="w-12 h-12 mb-2 flex items-center justify-center">
         <Image
-          src={skill.image || "/placeholder.svg"}
+          src={skill.image || "/icons/placeholder.svg"}
           alt={skill.name}
           className={"w-8 h-8 object-contain " + invertIconColor(skill.name, isWhiteMode())}
           width={32}

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
-import { skillsInterface } from "./data/StaticDataInterface"
+import { skillsInterface } from "../../data/StaticDataInterface"
 import { useTheme } from "@/app/context/ThemeProvider"
 import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
 
@@ -76,7 +76,7 @@ export default function SkillModal() {
             <div className="flex items-center mb-4">
               <div className="w-12 h-12 mr-4 bg-base-200 dark:bg-base-100 rounded-full p-2 flex items-center justify-center">
                 <Image
-                  src={selectedSkill.image || "/placeholder.svg"}
+                  src={selectedSkill.image || "/icons/placeholder.svg"}
                   alt={selectedSkill.name}
                   width={32}
                   height={32}

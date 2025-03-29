@@ -1,6 +1,6 @@
 'use client';
-import { skillsInterface } from "@/app/(routes)/about/data/StaticDataInterface";
-import { INVERTABLE_ICONS } from "@/app/(routes)/about/data/staticDataProvider";
+import { skillsInterface } from "@/app/data/StaticDataInterface";
+import { INVERTABLE_ICONS } from "@/app/data/staticDataProvider";
 import { useTheme } from "@/app/context/ThemeProvider";
 import Image from "next/image";
 

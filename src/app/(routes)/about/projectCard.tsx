@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image"
-import { Github, ExternalLink } from "lucide-react"
-import { ProjectInterface, skillsInterface } from "./data/StaticDataInterface"
+import { ExternalLink } from "lucide-react"
+import { ProjectInterface, skillsInterface } from "../../data/StaticDataInterface"
+import { pureGitHubSVG } from "@/app/data/IconSvg"
 
 interface ProjectCardProps {
   project: ProjectInterface
@@ -30,7 +31,7 @@ export default function ProjectCard({ project, skills }: ProjectCardProps) {
     <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow">
       <figure className="px-4 pt-4">
         <Image
-          src={project.image || "/placeholder.svg"}
+          src={project.image || "/icons/placeholder.svg"}
           alt={project.name}
           width={600}
           height={300}
@@ -77,9 +78,9 @@ export default function ProjectCard({ project, skills }: ProjectCardProps) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-sm btn-outline gap-2"
+            className="btn btn-sm btn-outline gap-2 group"
           >
-            <Github size={16} />
+            {pureGitHubSVG("group-hover:invert dark:invert")}
             Code
           </a>
 

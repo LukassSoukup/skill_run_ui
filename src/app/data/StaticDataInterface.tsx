@@ -20,3 +20,14 @@ export interface ProjectInterface {
   image?: string
   technologies: string[] // Names of technologies used
 }
+
+export interface Experience {
+  id: string
+  company: string
+  position: string
+  location: string
+  startDate: string
+  endDate?: string
+  description: string
+  achievements: string[]
+}

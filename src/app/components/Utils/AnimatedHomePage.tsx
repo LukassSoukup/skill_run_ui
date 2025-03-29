@@ -2,11 +2,12 @@
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import LightBallsScene from '../canvas/LightBallsScene';
+import { navMap } from '../Navbar';
 
 const AnimatedHomePage = () => {
   return (
     <section className="h-screen flex items-center justify-center text-center relative">
-      <div className="absolute inset-0 opacity-50">
+      <div className="fixed inset-0 opacity-50">
       <LightBallsScene />
       </div>
       <div className="relative z-10">
@@ -22,7 +23,7 @@ const AnimatedHomePage = () => {
           />
           {" Software Engineer"}
         </h2>
-        <a href="/projects" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
+        <a href={"#"+navMap.about.name} className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
           View My Work
         </a>
       </div>

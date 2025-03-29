@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import SkillIconHelper from "@/app/components/Utils/SkillIconHelper"
 import { ChevronUp, ChevronDown } from "lucide-react"
-import { skillsInterface } from "./data/StaticDataInterface"
+import { skillsInterface } from "../../data/StaticDataInterface"
 
 const AnimatedBanner = ({ skills }: { skills: skillsInterface[] }) => {
   const [isVisible, setIsVisible] = useState(true)
