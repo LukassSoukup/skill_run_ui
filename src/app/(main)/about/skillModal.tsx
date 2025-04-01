@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { X } from "lucide-react"
-import { skillsInterface } from "../../data/StaticDataInterface"
 import { useTheme } from "@/app/context/ThemeProvider"
 import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
+import { skillsInterface } from "@/app/interfaces/StaticDataInterface"
 
 // Extend window interface to include our modal
 declare global {

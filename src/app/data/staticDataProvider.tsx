@@ -1,4 +1,4 @@
-import { Experience, ProjectInterface, skillsInterface } from "./StaticDataInterface"
+import { Experience, ProjectInterface, skillsInterface } from "../interfaces/StaticDataInterface"
 
 export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js"];
 

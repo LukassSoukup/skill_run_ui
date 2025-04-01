@@ -2,15 +2,15 @@
 import React from 'react'
 import { TypeAnimation } from 'react-type-animation'
 import LightBallsScene from '../canvas/LightBallsScene';
-import { navMap } from '../Navbar';
+import { navMap } from '@/app/interfaces/NavMapInt';
 
 const AnimatedHomePage = () => {
   return (
-    <section className="h-screen flex items-center justify-center text-center relative">
+    <section id={navMap.home.name} className="h-screen flex items-center justify-center text-center relative">
       <div className="fixed inset-0 opacity-50">
       <LightBallsScene />
       </div>
-      <div className="relative z-10">
+      <div className="relative z-5">
         <h1 className="text-5xl font-bold mb-4">{"Hi, I'm Lukáš Soukup"}</h1>
         <h2 className="text-3xl mb-8">
           {"I'm a "}

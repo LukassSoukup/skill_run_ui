@@ -1,15 +1,30 @@
 "use client"
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
-import { ProjectInterface, skillsInterface } from "../../data/StaticDataInterface"
+import { ProjectInterface, skillsInterface } from "../../interfaces/StaticDataInterface"
 import { pureGitHubSVG } from "@/app/data/IconSvg"
+import { projects, skills } from "@/app/data/staticDataProvider"
+import { navMap } from "@/app/interfaces/NavMapInt"
 
 interface ProjectCardProps {
   project: ProjectInterface
   skills: skillsInterface[]
 }
 
-export default function ProjectCard({ project, skills }: ProjectCardProps) {
+const GitHubProjects = () => {
+  return (
+        <div id={navMap.projects.name}>
+          <h2 className="text-2xl font-semibold mb-4">GitHub Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <ProjectCard key={index} project={project} skills={skills} />
+            ))}
+          </div>
+        </div>
+  );
+}
+
+function ProjectCard({ project, skills }: ProjectCardProps) {
   // Find the skill objects that match the project technologies
   const projectSkills = skills.filter((skill) => project.technologies.includes(skill.name))
 
@@ -100,3 +115,5 @@ export default function ProjectCard({ project, skills }: ProjectCardProps) {
     </div>
   )
 }
+
+export default GitHubProjects;

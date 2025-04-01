@@ -1,4 +1,5 @@
 import { experiences } from "@/app/data/staticDataProvider"
+import { navMap } from "@/app/interfaces/NavMapInt"
 import { Briefcase } from "lucide-react"
 
 export default function Work() {
@@ -9,7 +10,7 @@ export default function Work() {
   }
 
   return (
-    <div className="card-body p-6 md:p-8">
+    <div id={navMap.work.name} className="card-body p-6 md:p-8">
       <h1 className="text-3xl font-bold tracking-tight mb-10">Professional Experience</h1>
       <div className="space-y-8">
         {experiences.map((exp) => (

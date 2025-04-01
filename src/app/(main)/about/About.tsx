@@ -2,14 +2,12 @@
 
 import { type ReactElement, useState } from "react"
 import Image from "next/image"
-import { navMap } from "@/app/components/Navbar"
 import SkillModal from "./skillModal"
-import ProjectCard from "./projectCard"
-import { skillsInterface, SkillType, SortOption } from "../../data/StaticDataInterface"
-import { ABOUT_INTRO, projects, skills } from "../../data/staticDataProvider"
 import { useTheme } from "@/app/context/ThemeProvider"
 import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
-import Work from "../work/page"
+import { navMap } from "@/app/interfaces/NavMapInt"
+import { skillsInterface, SkillType, SortOption } from "@/app/interfaces/StaticDataInterface"
+import { ABOUT_INTRO, skills } from "@/app/data/staticDataProvider"
 
 export default function About(): ReactElement {
   const [sortOption, setSortOption] = useState<SortOption>("type")
@@ -49,72 +47,59 @@ export default function About(): ReactElement {
   }
 
   return (
-        <div id={navMap.about.name} className="card bg-base-100 shadow-xl max-w-5xl w-full backdrop-filter backdrop-blur-lg bg-opacity-45 p-8 rounded-lg">
-          <div className="card-body p-6 md:p-8">
-            {/* About Section */}
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">{navMap.about.name}</h1>
-              <p className="text-base md:text-lg leading-relaxed">{ABOUT_INTRO}</p>
-            </div>
+      <div id={navMap.about.name} className="card-body p-6 md:p-8">
+        {/* About Section */}
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{navMap.about.name}</h1>
+          <p className="text-base md:text-lg leading-relaxed">{ABOUT_INTRO}</p>
+        </div>
 
-            {/* Skills Section */}
-            <div className="mb-8">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-                <h2 className="text-2xl font-semibold">Technical Skills</h2>
+        {/* Skills Section */}
+        <div className="mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <h2 className="text-2xl font-semibold">Technical Skills</h2>
 
-                {/* Sort Controls */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-medium">Sort by:</span>
-                  <div className="flex flex-wrap gap-1">
-                    <button
-                      onClick={() => handleSort("type")}
-                      className={`btn btn-sm ${sortOption === "type" ? "btn-primary" : "btn-outline"}`}
-                    >
-                      Type
-                    </button>
-                    <button
-                      onClick={() => handleSort("level")}
-                      className={`btn btn-sm ${sortOption === "level" ? "btn-primary" : "btn-outline"}`}
-                    >
-                      Level
-                    </button>
-                    <button
-                      onClick={() => handleSort("name")}
-                      className={`btn btn-sm ${sortOption === "name" ? "btn-primary" : "btn-outline"}`}
-                    >
-                      Name
-                    </button>
-                    <button
-                      onClick={() => handleSort("frequency")}
-                      className={`btn btn-sm ${sortOption === "frequency" ? "btn-primary" : "btn-outline"}`}
-                    >
-                      Frequency
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Skills Grid with Animation */}
-              <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {sortedSkills.map((skill) => (
-                  <SkillButton key={skill.name} skill={skill} />
-                ))}
-              </div>
-            </div>
-
-            {/* GitHub Projects Section */}
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">GitHub Projects</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {projects.map((project, index) => (
-                  <ProjectCard key={index} project={project} skills={skills} />
-                ))}
+            {/* Sort Controls */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm font-medium">Sort by:</span>
+              <div className="flex flex-wrap gap-1">
+                <button
+                  onClick={() => handleSort("type")}
+                  className={`btn btn-sm ${sortOption === "type" ? "btn-primary" : "btn-outline"}`}
+                >
+                  Type
+                </button>
+                <button
+                  onClick={() => handleSort("level")}
+                  className={`btn btn-sm ${sortOption === "level" ? "btn-primary" : "btn-outline"}`}
+                >
+                  Level
+                </button>
+                <button
+                  onClick={() => handleSort("name")}
+                  className={`btn btn-sm ${sortOption === "name" ? "btn-primary" : "btn-outline"}`}
+                >
+                  Name
+                </button>
+                <button
+                  onClick={() => handleSort("frequency")}
+                  className={`btn btn-sm ${sortOption === "frequency" ? "btn-primary" : "btn-outline"}`}
+                >
+                  Frequency
+                </button>
               </div>
             </div>
           </div>
-          <Work/>
-          <SkillModal />
+
+          {/* Skills Grid with Animation */}
+          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {sortedSkills.map((skill) => (
+              <SkillButton key={skill.name} skill={skill} />
+            ))}
+          </div>
         </div>
+        <SkillModal />
+      </div>
   )
 }
 

@@ -1,7 +1,8 @@
-import Navbar, { routeDetailsType } from '@/app/components/Navbar';
 import ThemeChanger from '@/app/components/Utils/ThemeChanger';
 import StylesWrapper from '@/app/components/Utils/ThemeWrapper';
 import React from 'react';
+import { routeDetailsType } from '../interfaces/NavMapInt';
+import Navbar from './Navbar';
 
 interface LayoutProps {
   children: React.ReactNode;

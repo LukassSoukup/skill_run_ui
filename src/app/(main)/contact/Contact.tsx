@@ -5,6 +5,7 @@ import type React from "react"
 import { useState, type FormEvent } from "react"
 import { Send } from "lucide-react"
 import Image from "next/image"
+import { navMap } from "@/app/interfaces/NavMapInt"
 
 interface FormData {
   name: string
@@ -54,7 +55,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div id={navMap.contact.name} className="min-h-screen flex flex-col">
       <main className="container mx-auto px-4 py-16 flex-grow">
         {/* Header Section */}
         <div className="text-center mb-16">
