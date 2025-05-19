@@ -2,6 +2,7 @@ import Link from 'next/link';
 import ThreeCanvas from './components/canvas/ThreeCanvas';
 import CommonLayout from './components/Layout';
 import { navMap } from './interfaces/NavMapInt';
+
 const NotFoundPage = () => {
   return (
     <CommonLayout pageName={navMap.home}>

@@ -51,7 +51,7 @@ export default function About(): ReactElement {
         {/* About Section */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{navMap.about.name}</h1>
-          <p className="text-base md:text-lg leading-relaxed">{ABOUT_INTRO}</p>
+          <p className="text-base md:text-lg leading-relaxed whitespace-pre-line">{ABOUT_INTRO}</p>
         </div>
 
         {/* Skills Section */}
@@ -139,9 +139,10 @@ function SkillButton({ skill }: { skill: skillsInterface }) {
         <Image
           src={skill.image || "/icons/placeholder.svg"}
           alt={skill.name}
-          className={"w-8 h-8 object-contain " + invertIconColor(skill.name, isWhiteMode())}
+          className={"object-contain " + invertIconColor(skill.name, isWhiteMode())}
           width={32}
           height={32}
+          style={{ width: 'auto', height: 'auto' }}
         />
       </div>
 

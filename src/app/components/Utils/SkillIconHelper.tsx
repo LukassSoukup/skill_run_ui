@@ -14,6 +14,7 @@ export const SkillIconHelper = ({skill}: {skill: skillsInterface}) => {
             width={10}
             height={10}
             className={"w-full h-full object-contain img " + invertIconColor(skill.name, isWhiteMode())}
+            style={{ width: 'auto', height: 'auto' }}
         />
     }
 

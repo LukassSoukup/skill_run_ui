@@ -7,6 +7,7 @@ import Work from '../work/Work';
 import GitHubProjects from '../personalProjects/GitHubProjects';
 import { navMap } from '@/app/interfaces/NavMapInt';
 import About from '../about/About';
+import { DEV_NAME } from '@/app/data/staticDataProvider';
 
 const Home = () => {
   return (
@@ -35,7 +36,7 @@ const Footer = () => {
                 <LinkedInIcon />
                 <GitHubIcon />
               </div>
-              <p className="text-base-content/70 mb-4">© {new Date().getFullYear()} Lukáš Soukup. All rights reserved.</p>
+              <p className="text-base-content/70 mb-4">© {new Date().getFullYear()} {DEV_NAME}. All rights reserved.</p>
             </div>
           </div>
         </footer>

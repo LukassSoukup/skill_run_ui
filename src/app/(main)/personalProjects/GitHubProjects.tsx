@@ -51,6 +51,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
           width={600}
           height={300}
           className="rounded-xl h-48 w-full object-cover"
+          style={{ height: 'auto' }}
         />
       </figure>
       <div className="card-body">
@@ -78,6 +79,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
                     width={16}
                     height={16}
                     className="object-contain"
+                    style={{ width: 'auto', height: 'auto' }}
                   />
                 </div>
                 <span>{skill.name}</span>

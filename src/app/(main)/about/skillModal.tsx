@@ -81,6 +81,7 @@ export default function SkillModal() {
                   width={32}
                   height={32}
                   className={"object-contain " + invertIconColor(selectedSkill.name, isWhiteMode())}
+                  style={{ width: 'auto', height: 'auto' }}
                 />
               </div>
               <div>

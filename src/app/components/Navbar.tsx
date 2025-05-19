@@ -9,7 +9,10 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
   if (!pageName || !Object.values(navMap).some(route => route.name === pageName.name)) {
     throw new Error(`Invalid page name: ${JSON.stringify(pageName)}`);
   }
-
+  const shouldGoHome = pageName.name === navMap.goHome.name;
+  const _navMap = shouldGoHome 
+    ? Object.values(navMap).filter((route: routeDetailsType) => route.name !== navMap.goHome.name) 
+    : Object.values(navMap);
   const [activeSection, setActiveSection] = useState(pageName.name);
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName }) => {
             tabIndex={0}
             className="dropdown-content menu bg-base-100 z-[1] w-52 p-2 shadow-lg"
           >
-            {Object.entries(navMap).map(([, value]: [string, routeDetailsType]) => (
+            {_navMap.map((value: routeDetailsType) => (
               <li
                 key={value.name}
                 className={`menu-item p-1 ${value.name === activeSection ? "active" : ""}`}

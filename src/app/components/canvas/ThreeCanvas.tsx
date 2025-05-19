@@ -1,50 +1,75 @@
 "use client"
 import * as THREE from 'three'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, ThreeElements } from '@react-three/fiber'
+import { skills } from '@/app/data/staticDataProvider'
 
-const Box = (props: ThreeElements['mesh']) => {
+type BoxProps = ThreeElements['mesh'] & {
+    skillIndex: number;
+}
+
+const Box = ({ skillIndex, ...props }: BoxProps) => {
     const ref = useRef<THREE.Mesh>(null!)
-    const [hovered, hover] = useState(false)
-    const [clicked, click] = useState(false)
+    const [texture, setTexture] = useState<THREE.Texture | null>(null)
+
+    useEffect(() => {
+        const textureLoader = new THREE.TextureLoader();
+        const skill = skills[skillIndex];
+        if (skill?.image) {
+            const loadedTexture = textureLoader.load(`${skill.image}`);
+            loadedTexture.colorSpace = THREE.SRGBColorSpace;
+            loadedTexture.minFilter = THREE.LinearFilter;
+            loadedTexture.magFilter = THREE.LinearFilter;
+            loadedTexture.generateMipmaps = false;
+            loadedTexture.flipY = false;
+            setTexture(loadedTexture);
+        }
+    }, [skillIndex]);
+    
     useFrame((state, delta) => {
         ref.current.rotation.x += delta;
         ref.current.rotation.y += delta;
         
-        const index = parseInt(props.name || "0");
-        ref.current.position.y = Math.cos(state.clock.getElapsedTime()/5 + (index * (2 * Math.PI / 23))) * 2
-        ref.current.position.x = Math.sin(state.clock.getElapsedTime()/5 + (index * (2 * Math.PI / 23))) * 2
-        ref.current.position.z = Math.tan(state.clock.getElapsedTime()/5 + (index * (2 * Math.PI / 23))) * 2
-        //ref.current.position.z = Math.abs(Math.tan(state.clock.getElapsedTime()/5 + (index * (2 * Math.PI / 23))) * 2)
+        const radius = 5;
+        const time = state.clock.getElapsedTime() / 5;
+        
+        ref.current.position.x = Math.cos(time + skillIndex) * radius;
+        ref.current.position.y = Math.sin(time + skillIndex) * radius;
+        ref.current.position.z = Math.sin(time + skillIndex * 0.5) * radius;
     })
 
     return (
         <mesh
             {...props}
             ref={ref}
-            scale={clicked ? 0.5 : 0.2}
-            onClick={() => click(!clicked)}
-            onPointerOver={() => hover(true)}
-            onPointerOut={() => hover(false)}>
+            scale={0.35}
+            castShadow
+            receiveShadow>
             <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+            {texture && (
+                <>
+                    <meshStandardMaterial attach="material-0" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial attach="material-1" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial attach="material-2" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial attach="material-3" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial attach="material-4" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                    <meshStandardMaterial attach="material-5" map={texture} color={'#ffffff'} roughness={0.3} metalness={0.7} />
+                </>
+            )}
         </mesh>
     )
 }
 
 const ThreeCanvas = () => {
-    const numberOfBoxes = 30; // You can change this number to add more boxes
-    
     return (
-        <Canvas>
-            <ambientLight intensity={Math.PI / 2} />
-            <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-            <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-            {Array.from({ length: numberOfBoxes }).map((_, index) => (
+        <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+            <ambientLight intensity={8} />
+            <directionalLight position={[5, 5, 5]} intensity={2} />
+            {skills.map((_, index) => (
                 <Box 
                     key={index}
-                    position={[Math.PI * index * Math.sin(index * 10)/index, Math.PI * index * Math.cos(index * 10)/index, 0]}
-                    name={index.toString()}
+                    position={[0, 0, 0]}
+                    skillIndex={index}
                 />
             ))}
         </Canvas>

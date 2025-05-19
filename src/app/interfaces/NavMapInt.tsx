@@ -8,6 +8,7 @@ export interface routeDetailsType {
 }
 
 export interface NavMapType {
+  goHome: routeDetailsType;
   home: routeDetailsType;
   about: routeDetailsType
   work: routeDetailsType
@@ -16,6 +17,10 @@ export interface NavMapType {
 }
 
 export const navMap: NavMapType = {
+  goHome: {
+    name: "Home",
+    path: "/"
+  },
   home: {
     name: "Home",
     path: "#Home"

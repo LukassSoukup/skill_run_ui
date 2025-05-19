@@ -1,13 +1,13 @@
 import { Experience, ProjectInterface, skillsInterface } from "../interfaces/StaticDataInterface"
 
-export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js"];
+export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm"];
 
-export const ABOUT_INTRO = `Fully committed to the philosophy of life-long learning, I'm a full stack developer with a deep
-                passion for JavaScript, React and all things web development. The unique combination of creativity,
-                logic, technology and never running out of new things to discover, drives my excitement and passion for
-                web development. When I'm not at my computer I like to spend my time reading, keeping fit and
-                playing guitar.`
-                
+export const DEV_NAME = "Lukáš Soukup";
+
+export const ABOUT_INTRO = `As a Software engineer, I always aim higher and seek more knowledge. Beyond development there is also a passion for Cyber Security. (Secure) Software development will always be my main priority as an IT professional. Regarding my work, I'm currently employed as a Software Engineer at Komerční banka (Société Générale) where I work with KB's tech stack but mainly Java 17/21, Spring Boot, PostgreSQL and many others. 
+I like to build discipline by challenging myself, therefore I spend my free time preparing for endurance races and competitive hackathons.
+If it's not obvious already, I'm a very active person. When I'm not grinding my skills up, I am probably just enjoying my time in nature. I am a big fan of running, cycling and paragliding.`
+
 export const skills: skillsInterface[] = [
   {
     name: "React",
@@ -17,17 +17,17 @@ export const skills: skillsInterface[] = [
     frequency: "Weekly",
     frequencyOrder: 2,
     purpose: "Building interactive user interfaces and web applications",
-    experience: "Over 4 years of experience building production applications",
+    experience: "Used React in all my personal projects involving frontend. I also worked with it at Unicorn Systems.",
   },
   {
     name: "MongoDB",
     level: 3,
     image: "/icons/mongodb-original.svg",
     type: "backend",
-    frequency: "Weekly",
-    frequencyOrder: 2,
-    purpose: "NoSQL database for storing application data",
-    experience: "3 years working with MongoDB Atlas and local instances",
+    frequency: "Yearly",
+    frequencyOrder: 5,
+    purpose: "Go to DB if i need quick and easy solution for storing data",
+    experience: "I was using MongoDB at Unicorn Systems and a few times at university.",
   },
   {
     name: "Git",
@@ -37,7 +37,7 @@ export const skills: skillsInterface[] = [
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Version control and collaboration",
-    experience: "5+ years of experience with branching strategies and workflows",
+    experience: "I mainly interact with Git through IDE integration, but I also use CLI for some advanced operations too.",
   },
   {
     name: "Apache Maven",
@@ -47,7 +47,7 @@ export const skills: skillsInterface[] = [
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Build automation and dependency management for Java projects",
-    experience: "4 years working with complex multi-module projects",
+    experience: "I use it for all my Java projects and at work. I also used Gradle for some projects, but I prefer Maven.",
   },
   {
     name: "Apache Kafka",
@@ -56,18 +56,28 @@ export const skills: skillsInterface[] = [
     type: "backend",
     frequency: "Daily",
     frequencyOrder: 1,
-    purpose: "Event streaming and message processing",
-    experience: "3 years implementing event-driven architectures",
+    purpose: "Event streaming and asynchronous message processing",
+    experience: "Big part of my work at Komerční banka involves setting up Kafka topics and configuring producers and consumers.",
+  },
+  {
+    name: "Apache ActiveMQ Artemis",
+    level: 2,
+    image: "/icons/Apache_ActiveMQ.svg",
+    type: "backend",
+    frequency: "Weekly",
+    frequencyOrder: 2,
+    purpose: "Command streaming and asynchronous message processing",
+    experience: "Setting up Artemis queues and configuring producers and consumers at Komerční banka.",
   },
   {
     name: "Argo CD",
     level: 3,
     image: "/icons/Argo CD.svg",
     type: "devops",
-    frequency: "Weekly",
-    frequencyOrder: 2,
+    frequency: "Daily",
+    frequencyOrder: 1,
     purpose: "GitOps continuous delivery for Kubernetes",
-    experience: "2 years managing deployment workflows",
+    experience: "Managing application deployments and configurations in Kubernetes clusters",
   },
   {
     name: "Three.js",
@@ -76,8 +86,8 @@ export const skills: skillsInterface[] = [
     type: "frontend",
     frequency: "Monthly",
     frequencyOrder: 3,
-    purpose: "3D graphics and visualization in the browser",
-    experience: "2 years creating interactive 3D experiences",
+    purpose: "3D graphics, animations and visualization in the browser",
+    experience: "This is my passion. Building my 3D world and crafting neat animations is a joy. I used it in my personal projects and at university.",
   },
   {
     name: "Kali Linux",
@@ -87,7 +97,7 @@ export const skills: skillsInterface[] = [
     frequency: "Monthly",
     frequencyOrder: 3,
     purpose: "Security testing and penetration testing",
-    experience: "2 years performing security assessments",
+    experience: "As a certified Cyber Security Specialist and a hobbist I use Kali Linux for security testing and penetration testing in mocked environments.",
   },
   {
     name: "Docker",
@@ -97,7 +107,7 @@ export const skills: skillsInterface[] = [
     frequency: "Monthly",
     frequencyOrder: 3,
     purpose: "Containerization of applications",
-    experience: "4 years containerizing microservices",
+    experience: "When I make an application I usually containerize it with Docker. I also use Docker Compose for local development.",
   },
   {
     name: "Electron",
@@ -107,17 +117,17 @@ export const skills: skillsInterface[] = [
     frequency: "Yearly",
     frequencyOrder: 5,
     purpose: "Building cross-platform desktop applications",
-    experience: "2 years developing desktop applications",
+    experience: "I've used Electron to build a desktop application \"welder_norm_checker\" for a local business. More info in the GitHub Projects section.",
   },
   {
     name: "Grafana",
     level: 3,
     image: "/icons/grafana.svg",
     type: "devops",
-    frequency: "Weekly",
+    frequency: "Daily",
     frequencyOrder: 2,
     purpose: "Metrics visualization and monitoring",
-    experience: "3 years creating dashboards and alerts",
+    experience: "Creating dashboards and visualizations for application performance monitoring. I am using it daily at work to monitor our application and I am currently working on personal dashboard for my project.",
   },
   {
     name: "Hibernate",
@@ -127,7 +137,7 @@ export const skills: skillsInterface[] = [
     frequency: "Weekly",
     frequencyOrder: 2,
     purpose: "ORM for Java applications",
-    experience: "4 years mapping complex domain models",
+    experience: "To simplify database interactions for bigger Java Applications. I am using it at work and in my personal projects.",
   },
   {
     name: "IntelliJ IDEA",
@@ -136,8 +146,8 @@ export const skills: skillsInterface[] = [
     type: "devops",
     frequency: "Daily",
     frequencyOrder: 1,
-    purpose: "Java and Kotlin development",
-    experience: "5 years as primary IDE",
+    purpose: "Mainly Java development",
+    experience: "Daily use at work and in personal projects. Best IDE in the world!",
   },
   {
     name: "Java",
@@ -147,7 +157,7 @@ export const skills: skillsInterface[] = [
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Backend service development",
-    experience: "6 years building enterprise applications",
+    experience: "Java was the first programming language I learned. I have been using it for 7 years and I love it. I am also trying to stay up to date with the latest features and best practices.",
   },
   {
     name: "Jenkins",
@@ -157,17 +167,17 @@ export const skills: skillsInterface[] = [
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "CI/CD pipeline automation",
-    experience: "4 years configuring and maintaining pipelines",
+    experience: "Daily use at work for building and deploying applications. Occasionally I am configuring Jenkins jobs and pipelines.",
   },
   {
     name: "Kibana",
-    level: 4,
+    level: 3,
     image: "/icons/kibana.svg",
     type: "devops",
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Log analysis and visualization",
-    experience: "3 years creating visualizations and dashboards",
+    experience: "Daily use at work. I am able to find anything I need but I am not an expert in Kibana.",
   },
   {
     name: "Kubernetes",
@@ -177,17 +187,17 @@ export const skills: skillsInterface[] = [
     frequency: "Weekly",
     frequencyOrder: 2,
     purpose: "Container orchestration",
-    experience: "3 years managing production clusters",
+    experience: "At Komerční banka I am using Kubernetes for managing and monitoring all of our clusters and their resources.",
   },
   {
     name: "Next.js",
     level: 4,
     image: "/icons/nextjs.svg",
     type: "devops",
-    frequency: "Weekly",
+    frequency: "Monthly",
     frequencyOrder: 2,
-    purpose: "React framework for production",
-    experience: "3 years building full-stack applications",
+    purpose: "Simplified React & Node.js development with easy Vercel deployment",
+    experience: "This app is built using Next.js. I use it for all my personal projects involving frontend work and for easy and free deployment to Vercel.",
   },
   {
     name: "Node.js",
@@ -197,17 +207,17 @@ export const skills: skillsInterface[] = [
     frequency: "Weekly",
     frequencyOrder: 2,
     purpose: "Backend JavaScript runtime",
-    experience: "5 years developing APIs and services",
+    experience: "I worked with Node.js at Unicorn Systems, at university and also in some of my personal projects like welder_norm_checker.",
   },
   {
     name: "PostgreSQL",
     level: 4,
     image: "/icons/postgresql.svg",
     type: "backend",
-    frequency: "Weekly",
-    frequencyOrder: 2,
-    purpose: "Relational database for structured data",
-    experience: "4 years designing schemas and optimizing queries",
+    frequency: "Daily",
+    frequencyOrder: 1,
+    purpose: "Open source relational database",
+    experience: "Besides PostgreSQL I also worked with MySQL and Oracle DB and SQL Lite. Now I am using PostgreSQL at work.",
   },
   {
     name: "Redis",
@@ -217,7 +227,7 @@ export const skills: skillsInterface[] = [
     frequency: "Weekly",
     frequencyOrder: 2,
     purpose: "In-memory data store and caching",
-    experience: "3 years implementing caching strategies",
+    experience: "I am actively using Redis at work - configuring and monitoring Redis clusters is also part of my job.",
   },
   {
     name: "SonarQube",
@@ -227,27 +237,27 @@ export const skills: skillsInterface[] = [
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Code quality and security analysis",
-    experience: "3 years maintaining quality gates",
+    experience: "To ensure quality and security of our code base. Meaning I am quite familiar with SonarQube and I am able to configure it for our needs.",
   },
   {
-    name: "Spring",
+    name: "Spring Boot",
     level: 5,
     image: "/icons/spring.svg",
     type: "backend",
     frequency: "Daily",
     frequencyOrder: 1,
     purpose: "Java application framework",
-    experience: "5 years building microservices",
+    experience: "I no longer write Java applications without Spring boot. I know this framework as well as i know Java itself.",
   },
   {
     name: "Tailwind CSS",
     level: 4,
     image: "/icons/tailwind-css.svg",
     type: "frontend",
-    frequency: "Weekly",
-    frequencyOrder: 2,
+    frequency: "Monthly",
+    frequencyOrder: 3,
     purpose: "Utility-first CSS framework",
-    experience: "3 years creating responsive designs",
+    experience: "I prefer Tailwind CSS over other frameworks like Bootstrap or Material UI for its simplicity and no need for messy CSS classes.",
   },
   {
     name: "TypeScript",
@@ -256,8 +266,8 @@ export const skills: skillsInterface[] = [
     type: "frontend",
     frequency: "Weekly",
     frequencyOrder: 2,
-    purpose: "Static typing for JavaScript",
-    experience: "4 years building type-safe applications",
+    purpose: "Type-safe JavaScript development",
+    experience: "I started using TS as soon as I started using React as I've come from a strictly typed language (Java). I no longer use plain JavaScript I use TypeScript instead.",
   },
   {
     name: "Ubuntu",
@@ -266,16 +276,26 @@ export const skills: skillsInterface[] = [
     type: "devops",
     frequency: "Daily",
     frequencyOrder: 1,
-    purpose: "Server and development environment",
-    experience: "6 years administering servers",
+    purpose: "Desktop and server OS",
+    experience: "I am using Ubuntu as my main OS for development and personal use - I can't imagine using Windows on my own PC anymore. I am also familiar with Raspberry Pi OS and Kali Linux.",
+  },
+  {
+    name: "Helm",
+    level: 3,
+    image: "/icons/helm.svg",
+    type: "devops",
+    frequency: "Daily",
+    frequencyOrder: 1,
+    purpose: "Kubernetes package management",
+    experience: "Helm is a real help for managing Kubernetes applications since we have a lot of those at work. This tool simplifies all the configurations and deployments.",
   },
 ]
 
 export const projects: ProjectInterface[] = [
   {
-    name: "Portfolio Website",
+    name: "Skill Run",
     description:
-      "My personal portfolio website built with Next.js and Tailwind CSS. Features responsive design, dark mode, and interactive components.",
+      "It is this web application you are currently using. It is built with React, TypeScript, Next.js and Tailwind CSS with DaisyUI components on the frontend. It features responsive design, dark mode, Three.js animation scenes and interactive components. The backend side is currently in progress, there I'm using Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Jenkins, however basic features like sending emails are already implemented so feel free to send me an email :)",
     githubUrl: "https://github.com/yourusername/portfolio",
     demoUrl: "https://yourportfolio.com",
     image: "/icons/placeholder.svg",

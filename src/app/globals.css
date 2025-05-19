@@ -33,6 +33,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4rem;
+  scrollbar-width: thin;
 }
 
 @media (max-width: 600px) {
