@@ -135,3 +135,16 @@ progress::-webkit-progress-value {
   height: 100%;
   /* filter: invert(0);*/
 }
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 15s forwards;
+}

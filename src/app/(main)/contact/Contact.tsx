@@ -1,8 +1,7 @@
 "use client"
 
 import type React from "react"
-
-import { useState, type FormEvent } from "react"
+import { useState, type FormEvent, useEffect } from "react"
 import { Send } from "lucide-react"
 import Image from "next/image"
 import { navMap } from "@/app/interfaces/NavMapInt"
@@ -35,14 +34,25 @@ export default function Contact() {
     setIsSubmitting(true)
 
     try {
-      // This is where you would integrate with your backend or email service
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulating API call
-
-      setSubmitStatus({
-        success: true,
-        message: "Thank you! Your message has been sent successfully.",
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-      setFormData({ name: "", email: "", message: "" })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message: "Thank you! Your message has been sent successfully.",
+        })
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        throw new Error(result.message || "Failed to send message.")
+      }
     } catch (error) {
       setSubmitStatus({
         success: false,
@@ -53,6 +63,16 @@ export default function Contact() {
       setIsSubmitting(false)
     }
   }
+
+  useEffect(() => {
+    if (submitStatus.message) {
+      const timer = setTimeout(() => {
+        setSubmitStatus((prev) => ({ ...prev, message: undefined }))
+      }, 12000) // 10 seconds delay + 2 seconds fade-out animation
+
+      return () => clearTimeout(timer)
+    }
+  }, [submitStatus.message])
 
   return (
     <div id={navMap.contact.name} className="min-h-screen flex flex-col">
@@ -169,7 +189,7 @@ export default function Contact() {
 
                   {submitStatus.message && (
                     <div
-                      className={`alert mt-6 ${submitStatus.success ? "alert-success" : "alert-error"} animate-fadeIn`}
+                      className={`alert mt-6 ${submitStatus.success ? "alert-success" : "alert-error"} animate-fadeIn fade-out`}
                     >
                       <div>
                         <span>{submitStatus.message}</span>

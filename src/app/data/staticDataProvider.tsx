@@ -296,9 +296,9 @@ export const projects: ProjectInterface[] = [
     name: "Skill Run",
     description:
       "It is this web application you are currently using. It is built with React, TypeScript, Next.js and Tailwind CSS with DaisyUI components on the frontend. It features responsive design, dark mode, Three.js animation scenes and interactive components. The backend side is currently in progress, there I'm using Java, Spring Boot, PostgreSQL, Docker, Kubernetes, Jenkins, however basic features like sending emails are already implemented so feel free to send me an email :)",
-    githubUrl: "https://github.com/yourusername/portfolio",
-    demoUrl: "https://yourportfolio.com",
-    image: "/icons/placeholder.svg",
+    githubUrl: "https://github.com/LukassSoukup/skill_run_ui",
+    demoUrl: "/",
+    image: "/icons/Skill-run_thumbnail.png",
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
   },
   {
