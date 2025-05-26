@@ -1,6 +1,7 @@
 import { experiences } from "@/app/data/staticDataProvider"
 import { navMap } from "@/app/interfaces/NavMapInt"
-import { Briefcase } from "lucide-react"
+import type { ExperienceType } from "@/app/interfaces/StaticDataInterface"
+import { Briefcase, GraduationCap, Zap } from "lucide-react"
 
 export default function Work() {
   const formatDate = (dateString?: string) => {
@@ -9,14 +10,35 @@ export default function Work() {
     return date.toLocaleDateString("en-US", { year: "numeric", month: "short" })
   }
 
+  const getIconByType = (type: ExperienceType) => {
+    switch (type) {
+      case "employment":
+        return <Briefcase className="h-4 w-4" />
+      case "certification":
+        return <GraduationCap className="h-4 w-4" />
+      case "hackathon":
+        return <Zap className="h-4 w-4" />
+      default:
+        return <Briefcase className="h-4 w-4" />
+    }
+  }
+
+  const sortedExperiences = [...experiences].sort((a, b) => {
+    const parse = (dateString?: string) => {
+      if (!dateString || dateString.toLowerCase() === 'present') return Date.now();
+      return new Date(dateString).getTime();
+    };
+    return parse(b.endDate) - parse(a.endDate);
+  })
+
   return (
     <div id={navMap.work.name} className="card-body p-6 md:p-8">
       <h1 className="text-3xl font-bold tracking-tight mb-10">Professional Experience</h1>
       <div className="space-y-8">
-        {experiences.map((exp) => (
+        {sortedExperiences.map((exp) => (
           <div key={exp.id} className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow">
-            <div className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-white dark:invert">
-              <Briefcase className="h-4 w-4" />
+            <div className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-full bg-blue-600 text-white dark:invert" title={exp.type}>
+              {getIconByType(exp.type)}
             </div>
             <div className="card-body rounded-lg shadow-sm p-6">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">

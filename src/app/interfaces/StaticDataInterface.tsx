@@ -1,5 +1,6 @@
 export type SkillType = "frontend" | "backend" | "devops" | "hacking"
 export type SortOption = "type" | "level" | "name" | "frequency"
+export type ExperienceType = "employment" | "certification" | "hackathon"
 
 export interface skillsInterface {
   name: string
@@ -30,4 +31,6 @@ export interface Experience {
   endDate?: string
   description: string
   achievements: string[]
+  type: ExperienceType;
+  sources?: string[];
 }
