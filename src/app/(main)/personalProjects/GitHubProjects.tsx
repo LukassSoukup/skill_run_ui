@@ -5,6 +5,7 @@ import { ProjectInterface, skillsInterface } from "../../interfaces/StaticDataIn
 import { pureGitHubSVG } from "@/app/data/IconSvg"
 import { projects, skills } from "@/app/data/staticDataProvider"
 import { navMap } from "@/app/interfaces/NavMapInt"
+import { useTheme } from "@/app/context/ThemeProvider"
 
 interface ProjectCardProps {
   project: ProjectInterface
@@ -25,6 +26,8 @@ const GitHubProjects = () => {
 }
 
 function ProjectCard({ project, skills }: ProjectCardProps) {
+  const { isWhiteMode } = useTheme();
+
   // Find the skill objects that match the project technologies
   const projectSkills = skills.filter((skill) => project.technologies.includes(skill.name))
 
@@ -42,11 +45,16 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
     }
   }
 
+  let projectImage = project.image;
+  if (project.name === "HarvestGuard") {
+    projectImage = isWhiteMode() ? "/icons/HarvestGuard.png" : "/icons/HarvestGuard_dark.png";
+  }
+
   return (
     <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow">
       <figure className="px-4 pt-4">
         <Image
-          src={project.image || "/icons/placeholder.svg"}
+          src={projectImage || "/icons/placeholder.svg"}
           alt={project.name}
           width={600}
           height={300}
@@ -56,7 +64,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
       </figure>
       <div className="card-body">
         <h3 className="card-title text-xl font-bold">{project.name}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 whitespace-pre-line">{project.description}</p>
 
         {/* Technologies Used */}
         <div className="mb-4">

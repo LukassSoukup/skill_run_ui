@@ -1,4 +1,4 @@
-export type SkillType = "frontend" | "backend" | "devops" | "hacking"
+export type SkillType = "frontend" | "backend" | "devops" | "hacking" | "AI"
 export type SortOption = "type" | "level" | "name" | "frequency"
 export type ExperienceType = "employment" | "certification" | "hackathon"
 

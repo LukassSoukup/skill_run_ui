@@ -52,7 +52,7 @@ export default function Work() {
                   {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
                 </div>
               </div>
-              <p className="mt-4">{exp.description}</p>
+              <p className="mt-4 whitespace-pre-line">{exp.description}</p>
               {exp.achievements.length > 0 && (
                 <div className="mt-4">
                   <h4 className="font-medium text-sm mb-2">Key Achievements:</h4>

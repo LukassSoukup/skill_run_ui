@@ -1,6 +1,6 @@
 import { Experience, ProjectInterface, skillsInterface } from "../interfaces/StaticDataInterface"
 
-export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm"];
+export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", "OpenAI API"];
 
 export const DEV_NAME = "Lukáš Soukup";
 
@@ -289,6 +289,26 @@ export const skills: skillsInterface[] = [
     purpose: "Kubernetes package management",
     experience: "Helm is a real help for managing Kubernetes applications since we have a lot of those at work. This tool simplifies all the configurations and deployments.",
   },
+  {
+    name: "Python",
+    level: 1,
+    image: "/icons/Python-logo.svg",
+    type: "backend",
+    frequency: "Yearly",
+    frequencyOrder: 5,
+    purpose: "Backend scripting for working with AI and data processing",
+    experience: "I have basic knowledge of Python, I used it for some personal projects and at university. I am not a Python developer but I can write simple scripts and work with AI libraries.",
+  },
+  {
+    name: "OpenAI API",
+    level: 3,
+    image: "/icons/openai.svg",
+    type: "AI",
+    frequency: "Monthly",
+    frequencyOrder: 3,
+    purpose: "OpenAI's API for AI applications",
+    experience: "I've used OpenAI's API for the SwissHacks project and I am planning to develop another AI agent powered tool soon. I am familiar with the basics of working with AI models and how to integrate them into applications.",
+  },
 ]
 
 export const projects: ProjectInterface[] = [
@@ -299,33 +319,31 @@ export const projects: ProjectInterface[] = [
     githubUrl: "https://github.com/LukassSoukup/skill_run_ui",
     demoUrl: "/",
     image: "/icons/Skill-run_thumbnail.png",
-    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript"],
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Three.js"],
   },
   {
-    name: "E-commerce Platform",
-    description:
-      "A full-stack e-commerce platform with product catalog, shopping cart, user authentication, and payment processing.",
-    githubUrl: "https://github.com/yourusername/ecommerce",
-    demoUrl: "https://yourecommerce.com",
-    image: "/icons/placeholder.svg",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "Redux"],
+    name: "Welder Norm Checker",
+    description: "ElectronJS desktop application designed to streamline employee record management and performance monitoring for welding operations. The application organizes local file storage for employee data, tracks individual work performance, and automatically calculates income based on the number of completed welded parts, providing an efficient and transparent solution for workforce and productivity management.",
+    githubUrl: "https://github.com/LukassSoukup/welder_norm_checker",
+    image: "/icons/welder_norm_checker.jpg",
+    technologies: ["React", "Node.js", "Electron", "TypeScript"],
   },
   {
-    name: "DevOps Dashboard",
+    name: "HarvestGuard",
     description:
-      "A monitoring dashboard for DevOps teams to track deployments, infrastructure health, and application metrics.",
-    githubUrl: "https://github.com/yourusername/devops-dashboard",
-    image: "/icons/placeholder.svg",
-    technologies: ["Docker", "Kubernetes", "Grafana", "Prometheus", "React"],
+      "A mobile-first dashboard built at START Hack 2025 for Syngenta, designed to empower farmers by aggregating diverse sensor data (soil quality, weather, humidity, pest control, plant health, etc.) into actionable insights. The solution highlights risks, provides recommendations, and features a minimal-text interface for accessibility in developing regions.\n\nWhen trying out the demo, please be patient, the backend has to start up and since it's a free hosting service it takes some time.",
+    githubUrl: "https://github.com/LukassSoukup/starthackCase",
+    demoUrl: "https://harvest-guard.vercel.app/",
+    image: "/icons/HarvestGuard.png", // HarvestGuard_dark.png for dark mode
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python"],
   },
   {
-    name: "Task Management System",
+    name: "RAIvisor - an AI Agent for Banking Advisors",
     description:
-      "A collaborative task management system with real-time updates, task assignments, and progress tracking.",
-    githubUrl: "https://github.com/yourusername/task-manager",
-    demoUrl: "https://yourtaskmanager.com",
+      "An advanced AI-powered tool developed at SwissHacks 2025 for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis. The solution was built in just 36 hours and won first place at the hackathon.\n\nDemo is unfortunately not available since it was designed to run onpremise to comply with data privacy regulations.",
+    githubUrl: "https://github.com/LukassSoukup/starthackCase",
     image: "/icons/placeholder.svg",
-    technologies: ["Java", "Spring", "PostgreSQL", "Angular", "WebSockets"],
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python", "OpenAI API", "LangChain", "Docker"],
   },
 ]
 
