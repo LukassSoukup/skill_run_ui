@@ -93,7 +93,7 @@ export default function About(): ReactElement {
 
           {/* Skills Grid with Animation */}
           <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {sortedSkills.map((skill) => (
+            {sortedSkills.filter(skill => !skill.hidden).map((skill) => (
               <SkillButton key={skill.name} skill={skill} />
             ))}
           </div>

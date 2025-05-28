@@ -1,11 +1,18 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+function getResendInstance() {
+  const resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) {
+    throw new Error("Missing RESEND_API_KEY environment variable. Please set it in your environment or .env file.");
+  }
+  return new Resend(resendApiKey);
+}
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json();
+    const resend = getResendInstance();
 
     await resend.emails.send({
       from: `Inbound Skill-Run Message <no-reply@lukassoukup.dev>`,

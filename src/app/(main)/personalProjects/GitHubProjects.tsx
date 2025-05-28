@@ -6,6 +6,7 @@ import { pureGitHubSVG } from "@/app/data/IconSvg"
 import { projects, skills } from "@/app/data/staticDataProvider"
 import { navMap } from "@/app/interfaces/NavMapInt"
 import { useTheme } from "@/app/context/ThemeProvider"
+import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
 
 interface ProjectCardProps {
   project: ProjectInterface
@@ -16,9 +17,11 @@ const GitHubProjects = () => {
   return (
         <div id={navMap.projects.name}>
           <h2 className="text-2xl font-semibold mb-4">GitHub Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:gap-6">
             {projects.map((project, index) => (
-              <ProjectCard key={index} project={project} skills={skills} />
+              <div key={index} className="md:w-[calc(50%-0.75rem)] w-full mb-0">
+                <ProjectCard project={project} skills={skills} />
+              </div>
             ))}
           </div>
         </div>
@@ -51,18 +54,18 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
   }
 
   return (
-    <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow">
-      <figure className="px-4 pt-4">
+    <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow h-auto p-0">
+      <figure className="px-4 pt-2 pb-0 m-0">
         <Image
           src={projectImage || "/icons/placeholder.svg"}
           alt={project.name}
           width={600}
           height={300}
-          className="rounded-xl h-48 w-full object-cover"
+          className="rounded-xl w-full"
           style={{ height: 'auto' }}
         />
       </figure>
-      <div className="card-body">
+      <div className="card-body p-4 pb-3">
         <h3 className="card-title text-xl font-bold">{project.name}</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 whitespace-pre-line">{project.description}</p>
 
@@ -86,7 +89,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
                     alt={skill.name}
                     width={16}
                     height={16}
-                    className="object-contain"
+                    className={"object-contain " + invertIconColor(skill.name, isWhiteMode())}
                     style={{ width: 'auto', height: 'auto' }}
                   />
                 </div>
@@ -99,15 +102,10 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
 
         {/* Links */}
         <div className="card-actions justify-end mt-auto">
-          <a
+          <GitHubLinkButton
             href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-sm btn-outline gap-2 group"
-          >
-            {pureGitHubSVG("group-hover:invert dark:invert")}
-            Code
-          </a>
+            isDisabled={project.githubUrl === "disabled"}
+          />
 
           {project.demoUrl && (
             <a
@@ -124,6 +122,30 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
       </div>
     </div>
   )
+}
+
+function GitHubLinkButton({ href, isDisabled }: { href: string; isDisabled: boolean }) {
+  return (
+    <a
+      href={isDisabled ? undefined : href}
+      target={isDisabled ? undefined : "_blank"}
+      rel={isDisabled ? undefined : "noopener noreferrer"}
+      className={
+        "btn btn-sm btn-outline gap-2 group " +
+        (isDisabled ? "cursor-not-allowed opacity-60" : "")
+      }
+      title={
+        isDisabled
+          ? "Other members of the project do not wish to share the repository."
+          : ""
+      }
+      aria-disabled={isDisabled ? "true" : undefined}
+      tabIndex={isDisabled ? -1 : undefined}
+    >
+      {pureGitHubSVG("group-hover:invert dark:invert")}
+      Code
+    </a>
+  );
 }
 
 export default GitHubProjects;

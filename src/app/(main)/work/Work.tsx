@@ -65,6 +65,24 @@ export default function Work() {
                   </ul>
                 </div>
               )}
+              {exp.sources && Object.keys(exp.sources).length > 0 && (
+                <div className="mt-4">
+                  <h4 className="text-sm font-semibold mb-2">Sources:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {Object.entries(exp.sources).map(([label, url], idx) => (
+                      <a
+                        key={idx}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 bg-base-100 dark:bg-base-200 px-2 py-1 rounded-md text-xs cursor-pointer hover:bg-opacity-80 underline"
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

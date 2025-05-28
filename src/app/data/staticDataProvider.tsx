@@ -1,6 +1,6 @@
 import { Experience, ProjectInterface, skillsInterface } from "../interfaces/StaticDataInterface"
 
-export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", "OpenAI API"];
+export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", "OpenAI API", "LangChain"];
 
 export const DEV_NAME = "Lukáš Soukup";
 
@@ -309,6 +309,17 @@ export const skills: skillsInterface[] = [
     purpose: "OpenAI's API for AI applications",
     experience: "I've used OpenAI's API for the SwissHacks project and I am planning to develop another AI agent powered tool soon. I am familiar with the basics of working with AI models and how to integrate them into applications.",
   },
+  {
+    name: "LangChain",
+    level: 2,
+    image: "/icons/Langchain.svg",
+    type: "AI",
+    frequency: "Yearly",
+    frequencyOrder: 5,
+    purpose: "Framework for developing applications powered by language models",
+    experience: "Used in the SwissHacks project for orchestrating AI agent workflows.",
+    hidden: true,
+  },
 ]
 
 export const projects: ProjectInterface[] = [
@@ -340,9 +351,9 @@ export const projects: ProjectInterface[] = [
   {
     name: "RAIvisor - an AI Agent for Banking Advisors",
     description:
-      "An advanced AI-powered tool developed at SwissHacks 2025 for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis. The solution was built in just 36 hours and won first place at the hackathon.\n\nDemo is unfortunately not available since it was designed to run onpremise to comply with data privacy regulations.",
-    githubUrl: "https://github.com/LukassSoukup/starthackCase",
-    image: "/icons/placeholder.svg",
+      "An advanced AI-powered tool developed at SwissHacks 2025 for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis. The solution was built in just 36 hours and won first place at the hackathon.\n\nDemo is unfortunately not available since it was designed to run onpremise to comply with data privacy regulations and some of the team members don't not want to share the code publicly, yet.",
+    githubUrl: "disabled", // No public repo available
+    image: "/icons/RAIvisor.png",
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python", "OpenAI API", "LangChain", "Docker"],
   },
 ]
@@ -395,10 +406,11 @@ export const experiences: Experience[] = [
         "Successfully collaborated in a high-pressure, cross-functional team environment",
         "Presented the solution to a panel of judges at SwissHacks and later presented at Point Zero Forum",
       ],
-      sources: [
-        "https://www.linkedin.com/posts/luk%C3%A1%C5%A1-soukup-5b7bb2222_swisshacks2025-fromideatoimpact-financialinnovation-activity-7317548194253463554-SGZM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADgP79sB6KFDQ9ok1RIgAsDUoDrHAutvve8",
-        "https://www.swisshacks.com/#winners",
-      ]
+      sources: {
+        "SwissHacks LinkedIn": "https://www.linkedin.com/posts/luk%C3%A1%C5%A1-soukup-5b7bb2222_swisshacks2025-fromideatoimpact-financialinnovation-activity-7317548194253463554-SGZM?utm_source=share&utm_medium=member_desktop&rcm=ACoAADgP79sB6KFDQ9ok1RIgAsDUoDrHAutvve8",
+        "SwissHacks Winners": "https://www.swisshacks.com/#winners",
+        "Swiss Financial Innovation Desk": "https://find.swiss/announcements/swisshacks2025",
+      }
     },
     {
       id: "4",
@@ -435,8 +447,8 @@ export const experiences: Experience[] = [
         "Understood legislative compliance, supplier management, and best practices for organizational security",
         "Completed practical labs and a final exam to validate comprehensive cybersecurity expertise"
       ],
-      sources: [
-        "https://kyberakademie.cz/en/cyberkurz-cz/",
-      ]
+      sources: {
+        "Kyber Akademie Course": "https://kyberakademie.cz/en/cyberkurz-cz/"
+      }
     },
   ]

@@ -11,6 +11,7 @@ export interface skillsInterface {
   frequencyOrder?: number // Numeric value for sorting (1: Daily, 2: Weekly, etc.)
   purpose?: string // What it's used for
   experience?: string // Experience level description
+  hidden?: boolean // If true, hide from technical skill card
 }
 
 export interface ProjectInterface {
@@ -32,5 +33,5 @@ export interface Experience {
   description: string
   achievements: string[]
   type: ExperienceType;
-  sources?: string[];
+  sources?: { [label: string]: string };
 }
