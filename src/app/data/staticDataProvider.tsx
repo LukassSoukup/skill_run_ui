@@ -4,9 +4,11 @@ export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", 
 
 export const DEV_NAME = "Lukáš Soukup";
 
-export const ABOUT_INTRO = `As a Software engineer, I always aim higher and seek more knowledge. Beyond development there is also a passion for Cyber Security. (Secure) Software development will always be my main priority as an IT professional. Regarding my work, I'm currently employed as a Software Engineer at Komerční banka (Société Générale) where I work with KB's tech stack but mainly Java 17/21, Spring Boot, PostgreSQL and many others. 
-I like to build discipline by challenging myself, therefore I spend my free time preparing for endurance races and competitive hackathons.
-If it's not obvious already, I'm a very active person. When I'm not grinding my skills up, I am probably just enjoying my time in nature. I am a big fan of running, cycling and paragliding.`
+export const ABOUT_INTRO = `I’m Lukáš Soukup, a dedicated Software Engineer with a strong foundation in Java and Spring Boot, currently shaping digital banking solutions at Komerční banka (Société Générale). My focus is building secure, scalable, and maintainable software where performance, resilience, and quality are key.
+
+With 7+ years of experience with Java and little over 3 years of professional work in the industry, I have a deep understanding of backend systems, distributed architecture, event-driven design, and DevOps practices. I also work on full-stack projects and enjoy exploring areas like cybersecurity, AI integration, and 3D prototyping.
+
+Driven by discipline and curiosity, I regularly take part in endurance races and hackathons—seeking growth through challenge, both professionally and personally.`
 
 export const skills: skillsInterface[] = [
   {
