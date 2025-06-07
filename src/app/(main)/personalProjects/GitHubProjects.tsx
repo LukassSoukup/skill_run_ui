@@ -51,6 +51,8 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
   let projectImage = project.image;
   if (project.name === "HarvestGuard") {
     projectImage = isWhiteMode() ? "/icons/HarvestGuard.png" : "/icons/HarvestGuard_dark.png";
+  }else if (project.name === "InvoiceParser") {
+    projectImage = isWhiteMode() ? "/icons/invoice-parser.jpeg" : "/icons/invoice-parser_dark.jpeg";
   }
 
   return (

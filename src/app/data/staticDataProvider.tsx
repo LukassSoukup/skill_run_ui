@@ -325,6 +325,29 @@ export const skills: skillsInterface[] = [
 ]
 
 export const projects: ProjectInterface[] = [
+    {
+    name: "InvoiceParser",
+    description:
+      "A simple and small Java application to parse invoices from my Gmail using Google's API. Genuingly helpful to speed up the process of gathering invoices for travel expenses and other purposes. First it queries Gmail for emails which contains specific keywords in the subject, then it downloads the attachments and saves it on my shared local storage within my local network that runs on Raspberry Pi. Everything is done in a Docker container so it can be easily managed and deployed on any machine.",
+    githubUrl: "https://github.com/LukassSoukup/InvoiceParser/tree/master",
+    image: "/icons/invoice-parser.jpeg",
+    technologies: ["Java", "Docker", "Spring Boot"],
+  },
+  {
+    name: "Welder Norm Checker",
+    description: "ElectronJS desktop application designed to streamline employee record management and performance monitoring for welding operations. The application organizes local file storage for employee data, tracks individual work performance, and automatically calculates income based on the number of completed welded parts, providing an efficient and transparent solution for workforce and productivity management.",
+    githubUrl: "https://github.com/LukassSoukup/welder_norm_checker",
+    image: "/icons/welder_norm_checker.jpg",
+    technologies: ["React", "Node.js", "Electron", "TypeScript"],
+  },
+  {
+    name: "RAIvisor - an AI Agent for Banking Advisors",
+    description:
+      "An advanced AI-powered tool developed at SwissHacks 2025 for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis. The solution was built in just 36 hours and won first place at the hackathon.\n\nDemo is unfortunately not available since it was designed to run onpremise to comply with data privacy regulations and some of the team members do not wish to share the code publicly, yet.",
+    githubUrl: "disabled", // No public repo available
+    image: "/icons/RAIvisor.png",
+    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python", "OpenAI API", "LangChain", "Docker"],
+  },
   {
     name: "Skill Run",
     description:
@@ -335,13 +358,6 @@ export const projects: ProjectInterface[] = [
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Three.js"],
   },
   {
-    name: "Welder Norm Checker",
-    description: "ElectronJS desktop application designed to streamline employee record management and performance monitoring for welding operations. The application organizes local file storage for employee data, tracks individual work performance, and automatically calculates income based on the number of completed welded parts, providing an efficient and transparent solution for workforce and productivity management.",
-    githubUrl: "https://github.com/LukassSoukup/welder_norm_checker",
-    image: "/icons/welder_norm_checker.jpg",
-    technologies: ["React", "Node.js", "Electron", "TypeScript"],
-  },
-  {
     name: "HarvestGuard",
     description:
       "A mobile-first dashboard built at START Hack 2025 for Syngenta, designed to empower farmers by aggregating diverse sensor data (soil quality, weather, humidity, pest control, plant health, etc.) into actionable insights. The solution highlights risks, provides recommendations, and features a minimal-text interface for accessibility in developing regions.\n\nWhen trying out the demo, please be patient, the backend has to start up and since it's a free hosting service it takes some time.",
@@ -349,14 +365,6 @@ export const projects: ProjectInterface[] = [
     demoUrl: "https://harvest-guard.vercel.app/",
     image: "/icons/HarvestGuard.png", // HarvestGuard_dark.png for dark mode
     technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python"],
-  },
-  {
-    name: "RAIvisor - an AI Agent for Banking Advisors",
-    description:
-      "An advanced AI-powered tool developed at SwissHacks 2025 for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis. The solution was built in just 36 hours and won first place at the hackathon.\n\nDemo is unfortunately not available since it was designed to run onpremise to comply with data privacy regulations and some of the team members don't not want to share the code publicly, yet.",
-    githubUrl: "disabled", // No public repo available
-    image: "/icons/RAIvisor.png",
-    technologies: ["Next.js", "React", "Tailwind CSS", "TypeScript", "Python", "OpenAI API", "LangChain", "Docker"],
   },
 ]
 
