@@ -1,0 +1,44 @@
+Professional Experience
+
+1. Medior Software Engineer at Komerční banka (Société Générale) (March 2022 – Present)
+   - Focused on backend development for digital banking solutions, including microservices-based systems for customer data migration.
+   - Key achievements:
+     - Designed and implemented RESTful APIs and asynchronous messaging systems (Kafka, ActiveMQ).
+     - Managed Kubernetes clusters and resources using Argo CD, Helm, Grafana, Kibana, and Kubernetes Dashboard.
+     - Operated in a cross-functional team environment, ensuring high-quality service delivery.
+
+2. Full Stack Developer at Unicorn Systems (March 2021 – March 2022)
+   - Worked on energy sector projects, including the MARI cross-border energy market.
+   - Key achievements:
+     - Maintained and enhanced core features for energy applications.
+     - Contributed to both frontend and backend development, supporting full-stack needs.
+     - Collaborated with senior developers to resolve production issues and implement new features.
+
+3. Hackathon Participant at SwissHacks (April 2025)
+   - Developed an AI-powered tool for banking advisors, winning first place at SwissHacks 2025.
+   - Key achievements:
+     - Built a full-stack AI agent platform in 36 hours.
+     - Implemented real-time speech-to-text transcription and AI-driven product recommendations.
+     - Presented the solution to judges and at the Point Zero Forum.
+
+4. Hackathon Participant at START Hack (March 2025)
+   - Created a mobile-first dashboard for farmers, aggregating sensor data for actionable insights.
+   - Key achievements:
+     - Designed and implemented real-time agricultural data visualization.
+     - Developed automated risk detection and recommendation features.
+     - Optimized the interface for accessibility in developing regions.
+
+5. Cyber Security Specialist Certification at Kyber Akademie (September 2024 – November 2024)
+   - Completed an intensive course covering IT security fundamentals, ethical hacking, and risk management.
+   - Key achievements:
+     - Developed a strong foundation in IT security principles, privacy protection, OSINT techniques, ethical hacking, physical and hardware security, and risk management.
+     - Learned business continuity, incident response, and legislative compliance.
+     - Validated expertise through practical labs and a final exam.
+
+Key Professional Achievements
+
+- Extensive experience in backend systems, distributed architecture, and event-driven design.
+- Proficient in DevOps practices, including container orchestration and CI/CD pipeline automation.
+- Strong foundation in Java, Spring Boot, and microservices architecture.
+- Proven ability to deliver innovative solutions under pressure, as demonstrated in hackathons.
+- Certified Cyber Security Specialist with expertise in privacy protection and organizational security.

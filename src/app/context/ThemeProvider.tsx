@@ -16,12 +16,12 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const WHITE_MODE = process.env.NEXT_PUBLIC_THEME_LIGHT_MODE || 'nord';
   const DARK_MODE = process.env.NEXT_PUBLIC_THEME_DARK_MODE || 'business';
-  const [theme, setTheme] = useState<string>(WHITE_MODE);
+  const [theme, setTheme] = useState<string>(DARK_MODE);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(storedTheme || WHITE_MODE);
+    setTheme(storedTheme || DARK_MODE); 
 
     if (storedTheme) {
       document.documentElement.classList.toggle('dark', storedTheme === DARK_MODE);

@@ -406,7 +406,7 @@ export const experiences: Experience[] = [
       location: "Zurich, Switzerland",
       startDate: "2025-04",
       endDate: "2025-04",
-      description: "Achieved first place at SwissHacks 2025, collaborating with a team of five on a case for Raiffeisen Bank. We developed an advanced AI-powered tool for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis—all delivered within a 36-hour hackathon.",
+      description: "Achieved first place at SwissHacks 2025 hackathon in Zürich, collaborating with a team of five on a case for Raiffeisen Bank. We developed an advanced AI-powered tool for banking advisors, enabling real-time multilingual speech-to-text transcription, product sale recommendations, compliance checks, automated note-taking, customer data synchronization, and sentiment analysis—all delivered within a 36-hour hackathon.",
       type: "hackathon",
       achievements: [
         "Built a full-stack AI agent platform for banking advisors in just 36 hours, winning first place at SwissHacks 2025",
