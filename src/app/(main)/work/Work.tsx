@@ -1,11 +1,16 @@
+"use client"
 import { experiences } from "@/app/data/staticDataProvider"
 import { navMap } from "@/app/interfaces/NavMapInt"
 import type { ExperienceType } from "@/app/interfaces/StaticDataInterface"
 import { Briefcase, GraduationCap, Zap } from "lucide-react"
+import { useLanguage } from "@/app/context/LanguageProvider"
 
 export default function Work() {
+  const { content } = useLanguage()
+  const { ui, experiences: expTranslations } = content
+
   const formatDate = (dateString?: string) => {
-    if (!dateString) return "Present"
+    if (!dateString) return ui.present
     const date = new Date(dateString)
     return date.toLocaleDateString("en-US", { year: "numeric", month: "short" })
   }
@@ -33,7 +38,7 @@ export default function Work() {
 
   return (
     <div id={navMap.work.name} className="card-body p-6 md:p-8">
-      <h1 className="text-3xl font-bold tracking-tight mb-10">Professional Experience</h1>
+      <h1 className="text-3xl font-bold tracking-tight mb-10">{ui.professionalExperience}</h1>
       <div className="space-y-8">
         {sortedExperiences.map((exp) => (
           <div key={exp.id} className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow">
@@ -52,12 +57,12 @@ export default function Work() {
                   {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
                 </div>
               </div>
-              <p className="mt-4 whitespace-pre-line">{exp.description}</p>
+              <p className="mt-4 whitespace-pre-line">{expTranslations[exp.id]?.description ?? exp.description}</p>
               {exp.achievements.length > 0 && (
                 <div className="mt-4">
-                  <h4 className="font-medium text-sm mb-2">Key Achievements:</h4>
+                  <h4 className="font-medium text-sm mb-2">{ui.keyAchievements}</h4>
                   <ul className="list-disc pl-5 space-y-1">
-                    {exp.achievements.map((achievement, i) => (
+                    {(expTranslations[exp.id]?.achievements ?? exp.achievements).map((achievement, i) => (
                       <li key={i} className="text-sm">
                         {achievement}
                       </li>
@@ -67,7 +72,7 @@ export default function Work() {
               )}
               {exp.sources && Object.keys(exp.sources).length > 0 && (
                 <div className="mt-4">
-                  <h4 className="text-sm font-semibold mb-2">Sources:</h4>
+                  <h4 className="text-sm font-semibold mb-2">{ui.sources}</h4>
                   <div className="flex flex-wrap gap-2">
                     {Object.entries(exp.sources).map(([label, url], idx) => (
                       <a

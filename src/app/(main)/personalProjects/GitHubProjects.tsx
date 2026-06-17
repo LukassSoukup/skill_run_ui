@@ -6,6 +6,7 @@ import { pureGitHubSVG } from "@/app/data/IconSvg"
 import { projects, skills } from "@/app/data/staticDataProvider"
 import { navMap } from "@/app/interfaces/NavMapInt"
 import { useTheme } from "@/app/context/ThemeProvider"
+import { useLanguage } from "@/app/context/LanguageProvider"
 import { invertIconColor } from "@/app/components/Utils/SkillIconHelper"
 
 interface ProjectCardProps {
@@ -14,9 +15,10 @@ interface ProjectCardProps {
 }
 
 const GitHubProjects = () => {
+  const { content } = useLanguage()
   return (
         <div id={navMap.projects.name}>
-          <h2 className="text-2xl font-semibold mb-4">GitHub Projects</h2>
+          <h2 className="text-2xl font-semibold mb-4">{content.ui.githubProjects}</h2>
           <div className="flex flex-col gap-6 md:flex-row md:flex-wrap md:gap-6">
             {projects.map((project, index) => (
               <div key={index} className="md:w-[calc(50%-0.75rem)] w-full mb-0">
@@ -30,6 +32,8 @@ const GitHubProjects = () => {
 
 function ProjectCard({ project, skills }: ProjectCardProps) {
   const { isWhiteMode } = useTheme();
+  const { content } = useLanguage();
+  const { ui, projects: projectTranslations } = content;
 
   // Find the skill objects that match the project technologies
   const projectSkills = skills.filter((skill) => project.technologies.includes(skill.name))
@@ -56,7 +60,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
   }
 
   return (
-    <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow h-auto p-0">
+    <div className="card bg-base-200 dark:bg-base-300 shadow-lg hover:shadow-xl transition-shadow p-0">
       <figure className="px-4 pt-2 pb-0 m-0">
         <Image
           src={projectImage || "/icons/placeholder.svg"}
@@ -69,11 +73,11 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
       </figure>
       <div className="card-body p-4 pb-3">
         <h3 className="card-title text-xl font-bold">{project.name}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 whitespace-pre-line">{project.description}</p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 whitespace-pre-line">{projectTranslations[project.name] ?? project.description}</p>
 
         {/* Technologies Used */}
         <div className="mb-4">
-          <h4 className="text-sm font-semibold mb-2">Technologies Used:</h4>
+          <h4 className="text-sm font-semibold mb-2">{ui.technologiesUsed}</h4>
           <div className="flex flex-wrap gap-2">
             {projectSkills.map((skill, index) => (
               <div
@@ -107,6 +111,8 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
           <GitHubLinkButton
             href={project.githubUrl}
             isDisabled={project.githubUrl === "disabled"}
+            label={ui.code}
+            noRepoMessage={ui.noRepoMessage}
           />
 
           {project.demoUrl && (
@@ -117,7 +123,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
               className="btn btn-sm btn-primary gap-2"
             >
               <ExternalLink size={16} />
-              Live Demo
+              {ui.liveDemo}
             </a>
           )}
         </div>
@@ -126,7 +132,7 @@ function ProjectCard({ project, skills }: ProjectCardProps) {
   )
 }
 
-function GitHubLinkButton({ href, isDisabled }: { href: string; isDisabled: boolean }) {
+function GitHubLinkButton({ href, isDisabled, label, noRepoMessage }: { href: string; isDisabled: boolean; label: string; noRepoMessage: string }) {
   return (
     <a
       href={isDisabled ? undefined : href}
@@ -136,16 +142,12 @@ function GitHubLinkButton({ href, isDisabled }: { href: string; isDisabled: bool
         "btn btn-sm btn-outline gap-2 group " +
         (isDisabled ? "cursor-not-allowed opacity-60" : "")
       }
-      title={
-        isDisabled
-          ? "Other members of the project do not wish to share the repository."
-          : ""
-      }
+      title={isDisabled ? noRepoMessage : ""}
       aria-disabled={isDisabled ? "true" : undefined}
       tabIndex={isDisabled ? -1 : undefined}
     >
       {pureGitHubSVG("group-hover:invert dark:invert")}
-      Code
+      {label}
     </a>
   );
 }

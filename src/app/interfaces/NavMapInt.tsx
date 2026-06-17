@@ -5,6 +5,7 @@ export interface NavbarProps {
 export interface routeDetailsType {
   name: string;
   path: string;
+  label?: string;
 }
 
 export interface NavMapType {
@@ -19,26 +20,32 @@ export interface NavMapType {
 export const navMap: NavMapType = {
   goHome: {
     name: "Home",
-    path: "/"
+    path: "/",
+    label: "Home",
   },
   home: {
     name: "Home",
-    path: "#Home"
+    path: "#Home",
+    label: "Home",
   },
   about: {
     name: "About Me",
-    path: "#About Me"
+    path: "#About Me",
+    label: "About",
   },
   projects: {
     name: "GitHub Projects",
-    path: "#GitHub Projects"
+    path: "#GitHub Projects",
+    label: "Projects",
   },
   work: {
     name: "Professional Experience",
-    path: "#Professional Experience"
+    path: "#Professional Experience",
+    label: "Experience",
   },
   contact: {
     name: "Contact",
-    path: "#Contact"
-  }
+    path: "#Contact",
+    label: "Hire Me",
+  },
 }

@@ -8,7 +8,6 @@ interface ThemeContextProps {
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
   isWhiteMode: () => boolean;
-  isDarkMode?: () => boolean;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -38,10 +37,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [theme]);
 
   const isWhiteMode = () => theme === WHITE_MODE;
-  const isDarkMode = () => theme === DARK_MODE;
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, isWhiteMode, isDarkMode }}>
+    <ThemeContext.Provider value={{ theme, setTheme, isWhiteMode }}>
         <StylesWrapper className='h-full w-full'>
           {children}
         </StylesWrapper>

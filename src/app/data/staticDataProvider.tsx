@@ -3,6 +3,26 @@ import { Experience, ProjectInterface, skillsInterface } from "../interfaces/Sta
 export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", "OpenAI API", "LangChain"];
 
 export const DEV_NAME = "Lukáš Soukup";
+export const DEV_TITLE = "Full-Stack Software Engineer";
+export const DEV_PROFILE_PIC = "/icons/profilePic.png";
+
+export const HERO = {
+  availableBadge: "Available for new projects",
+  headlinePre: "Need a",
+  headlineAccent: "Software",
+  headlinePost: "Engineer?",
+  subheadline:
+    "I build reliable backend systems and full\u2011stack applications. 3+ years of professional experience at Komerční banka. Let\u2019s solve your engineering challenge.",
+  ctaPrimary: "Get in Touch",
+  ctaSecondary: "See My Work",
+  profilePicAlt: `${DEV_NAME} — ${DEV_TITLE}`,
+};
+
+export const TRUST_SIGNALS: { label: string; icon: string }[] = [
+  { label: "3+ yrs at Komerční banka", icon: "◈" },
+  { label: "SwissHacks 2025 Winner", icon: "◈" },
+  { label: "Cyber Security Certified", icon: "◈" },
+];
 
 export const ABOUT_INTRO = `I’m Lukáš Soukup, a dedicated Software Engineer with a strong foundation in Java and Spring Boot, currently shaping digital banking solutions at Komerční banka (Société Générale). My focus is building secure, scalable, and maintainable software where performance, resilience, and quality are key.
 

@@ -42,3 +42,9 @@ next-env.d.ts
 
 # ai guidelines
 ai_instructions.md
+
+# mcp
+.playwright-mcp
+
+# Claude
+.claude
