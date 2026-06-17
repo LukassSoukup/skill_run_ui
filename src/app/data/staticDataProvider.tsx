@@ -1,27 +1,34 @@
-import { Experience, ProjectInterface, skillsInterface } from "../interfaces/StaticDataInterface"
+import { Experience, ProjectInterface, skillsInterface, TrustSignal } from "../interfaces/StaticDataInterface"
 
 export const INVERTABLE_ICONS = ["Apache Kafka", "Three.js", "Next.js", "Helm", "OpenAI API", "LangChain"];
 
 export const DEV_NAME = "Lukáš Soukup";
 export const DEV_TITLE = "Full-Stack Software Engineer";
 export const DEV_PROFILE_PIC = "/icons/profilePic.png";
+export const DEV_LINKEDIN = "https://www.linkedin.com/in/luk%C3%A1%C5%A1-soukup-5b7bb2222/";
+export const DEV_GITHUB = "https://github.com/LukassSoukup/";
 
 export const HERO = {
   availableBadge: "Available for new projects",
-  headlinePre: "Need a",
-  headlineAccent: "Software",
-  headlinePost: "Engineer?",
+  headlinePre: "Your backend ships on time.",
+  headlineAccent: "Your architecture scales.",
+  headlinePost: "I make it happen.",
   subheadline:
-    "I build reliable backend systems and full\u2011stack applications. 3+ years of professional experience at Komerční banka. Let\u2019s solve your engineering challenge.",
+    "Reliable APIs, scalable architecture, and features that ship — backed by 3+ years at Komerční banka and a SwissHacks 2025 win. Let\u2019s build something great.",
   ctaPrimary: "Get in Touch",
   ctaSecondary: "See My Work",
   profilePicAlt: `${DEV_NAME} — ${DEV_TITLE}`,
+  services: [
+    "Backend API design & distributed systems",
+    "Full-stack application development",
+    "Architecture, DevOps & technical consulting",
+  ],
 };
 
-export const TRUST_SIGNALS: { label: string; icon: string }[] = [
-  { label: "3+ yrs at Komerční banka", icon: "◈" },
-  { label: "SwissHacks 2025 Winner", icon: "◈" },
-  { label: "Cyber Security Certified", icon: "◈" },
+export const TRUST_SIGNALS: TrustSignal[] = [
+  { label: "3+ yrs at Komerční banka", iconPath: "/icons/kb-logo.svg" },
+  { label: "SwissHacks 2025 Winner", iconPath: "/icons/hackathon-medal.svg" },
+  { label: "Cyber Security Certified", iconPath: "/icons/cert-shield.svg" },
 ];
 
 export const ABOUT_INTRO = `I’m Lukáš Soukup, a dedicated Software Engineer with a strong foundation in Java and Spring Boot, currently shaping digital banking solutions at Komerční banka (Société Générale). My focus is building secure, scalable, and maintainable software where performance, resilience, and quality are key.

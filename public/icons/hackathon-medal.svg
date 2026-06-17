@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Trophy cup -->
+  <path d="M8 3h8v7a4 4 0 0 1-8 0V3Z" fill="#F5A623"/>
+  <!-- Trophy handles -->
+  <path d="M8 5H5a2 2 0 0 0 0 4h3" stroke="#F5A623" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M16 5h3a2 2 0 0 1 0 4h-3" stroke="#F5A623" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Stem -->
+  <rect x="11" y="10" width="2" height="4" fill="#D4891A"/>
+  <!-- Base plate -->
+  <rect x="7" y="14" width="10" height="2" rx="1" fill="#D4891A"/>
+  <!-- Pedestal -->
+  <rect x="9" y="16" width="6" height="1.5" rx="0.75" fill="#D4891A"/>
+  <!-- Star highlight -->
+  <path d="M12 5.5l.7 2.1H15l-1.8 1.3.7 2.1L12 9.8l-1.9 1.2.7-2.1L9 7.6h2.3z" fill="white" opacity="0.9"/>
+</svg>

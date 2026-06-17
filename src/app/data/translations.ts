@@ -4,19 +4,24 @@ const translations = {
   en: {
     hero: {
       availableBadge: "Available for new projects",
-      headlinePre: "Need a",
-      headlineAccent: "Software",
-      headlinePost: "Engineer?",
+      headlinePre: "Your backend ships on time.",
+      headlineAccent: "Your architecture scales.",
+      headlinePost: "I make it happen.",
       subheadline:
-        "I build reliable backend systems and full\u2011stack applications. 3+ years of professional experience at Komerční banka. Let\u2019s solve your engineering challenge.",
+        "Reliable APIs, scalable architecture, and features that ship — backed by 3+ years at Komerční banka and a SwissHacks 2025 win. Let's build something great.",
       ctaPrimary: "Get in Touch",
       ctaSecondary: "See My Work",
       profilePicAlt: "Lukáš Soukup — Full-Stack Software Engineer",
+      services: [
+        "Backend API design & distributed systems",
+        "Full-stack application development",
+        "Architecture, DevOps & technical consulting",
+      ],
     },
     trustSignals: [
-      { label: "3+ yrs at Komerční banka", icon: "◈" },
-      { label: "SwissHacks 2025 Winner", icon: "◈" },
-      { label: "Cyber Security Certified", icon: "◈" },
+      { label: "3+ yrs at Komerční banka", iconPath: "/icons/kb-logo.svg" },
+      { label: "SwissHacks 2025 Winner", iconPath: "/icons/hackathon-medal.svg" },
+      { label: "Cyber Security Certified", iconPath: "/icons/cert-shield.svg" },
     ],
     aboutIntro: `I'm Lukáš Soukup, a dedicated Software Engineer with a strong foundation in Java and Spring Boot, currently shaping digital banking solutions at Komerční banka (Société Générale). My focus is building secure, scalable, and maintainable software where performance, resilience, and quality are key.
 
@@ -142,11 +147,16 @@ Driven by discipline and curiosity, I regularly take part in endurance races and
       ctaPrimary: "Kontaktujte mě",
       ctaSecondary: "Prohlédnout práci",
       profilePicAlt: "Lukáš Soukup — Full-Stack Software Engineer",
+      services: [
+        "Návrh backend API a distribuovaných systémů",
+        "Full-stack vývoj aplikací",
+        "Architektura, DevOps a technické poradenství",
+      ],
     },
     trustSignals: [
-      { label: "3+ roky v Komerční bance", icon: "◈" },
-      { label: "Vítěz SwissHacks 2025", icon: "◈" },
-      { label: "Certifikát kybernetické bezpečnosti", icon: "◈" },
+      { label: "3+ roky v Komerční bance", iconPath: "/icons/kb-logo.svg" },
+      { label: "Vítěz SwissHacks 2025", iconPath: "/icons/hackathon-medal.svg" },
+      { label: "Certifikát kybernetické bezpečnosti", iconPath: "/icons/cert-shield.svg" },
     ],
     aboutIntro: `Jsem Lukáš Soukup, softwarový inženýr se silnými základy v Javě a Spring Bootu, který v současné době formuje digitální bankovní řešení v Komerční bance (Société Générale). Zaměřuji se na budování bezpečného, škálovatelného a udržovatelného softwaru, kde jsou klíčové výkon, odolnost a kvalita.
 
