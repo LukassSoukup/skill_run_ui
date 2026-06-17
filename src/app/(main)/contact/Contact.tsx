@@ -129,6 +129,7 @@ export default function Contact() {
                         placeholder={ui.emailPlaceholder}
                         className="input input-bordered w-full bg-base-100 focus:border-primary focus:ring-2 focus:ring-primary/20"
                         required
+                        suppressHydrationWarning
                       />
                     </div>
 
